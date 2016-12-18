@@ -1,0 +1,53 @@
+#flw-pay-now-button {
+  -moz-user-select: none;
+  -ms-touch-action: manipulation;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  background-color: #0a2740;
+  border: 1px solid #142a3e;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  margin: 0 0 6px;
+  outline: none;
+  padding: 6px 12px;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#flw-pay-now-button:hover {
+  background-color: #3d5a73;
+}
+
+#flw-pay-now-button:active {
+  background-color: #0a2740;
+}
+
+#flw-customer-email, #flw-amount {
+  border: 1px solid #777;
+  border-color: #142a3e;
+  border-radius: 4px;
+  color: #777;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  margin: 0 0 6px;
+  outline: none;
+  padding: 6px 12px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+label.pay-now {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 0;
+}
