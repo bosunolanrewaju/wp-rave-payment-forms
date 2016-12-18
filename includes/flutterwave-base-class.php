@@ -43,6 +43,7 @@
 
         require_once( FLW_DIR_PATH . 'includes/flutterwave-shortcode.php' );
         require_once( FLW_DIR_PATH . 'includes/admin-settings.php' );
+        require_once( FLW_DIR_PATH . 'includes/vc-elements/simple-vc-pay-now-form.php' );
 
       }
 

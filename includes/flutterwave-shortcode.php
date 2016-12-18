@@ -46,13 +46,14 @@
        *
        * @return string      Pay Now button html content
        */
-      public function pay_button_shortcode( $atts, $content="" ) {
+      public function pay_button_shortcode( $attr, $content="" ) {
 
         global $admin_settings;
 
         if ( ! $admin_settings->is_public_key_present() ) return;
 
         $btn_text = empty( $content ) ? $this->pay_button_text() : $content;
+        $email = $this->use_current_user_email( $attr ) ? wp_get_current_user()->user_email : '';
 
         $atts = shortcode_atts( array(
           'amount'    => '',
@@ -60,10 +61,10 @@
           'currency'  => $admin_settings->get_option_value( 'currency' ),
           'desc'      => $admin_settings->get_option_value( 'modal_desc' ),
           'title'     => $admin_settings->get_option_value( 'modal_title' ),
-          'email'     => '',
+          'email'     => $email,
           'pbkey'     => $admin_settings->get_option_value( 'public_key' ),
           'url'       => $admin_settings->get_option_value( 'redirect_url' ),
-        ), $atts );
+        ), $attr );
 
         $this->load_static_files( $atts );
 
@@ -101,6 +102,19 @@
         }
 
         return $text;
+
+      }
+
+      /**
+       * Checks if the loggedin user email should be used
+       *
+       * @param  array $attr attributes from shortcode
+       *
+       * @return boolean
+       */
+      private function use_current_user_email( $attr ) {
+
+        return isset( $attr['use_current_user_email'] ) && $attr['use_current_user_email'] === 'yes';
 
       }
     }

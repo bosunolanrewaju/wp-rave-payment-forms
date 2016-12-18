@@ -1,4 +1,4 @@
-#flw-pay-now-button {
+.flw-pay-now-button {
   -moz-user-select: none;
   -ms-touch-action: manipulation;
   -ms-user-select: none;
@@ -22,11 +22,11 @@
   white-space: nowrap;
 }
 
-#flw-pay-now-button:hover {
+.flw-pay-now-button:hover {
   background-color: #3d5a73;
 }
 
-#flw-pay-now-button:active {
+.flw-pay-now-button:active {
   background-color: #0a2740;
 }
 

@@ -1,8 +1,7 @@
 'use strict';
 
-let email     = '';
+let { email, amount } = flw_payment_args;
 const {
-  amount,
   button,
   country,
   currency,
@@ -11,17 +10,17 @@ const {
   title,
   url
 } = flw_payment_args;
-const payNowBtn = document.getElementById( 'flw-pay-now-button' );
 const prefix    = Math.random().toString(36).substr(2, 3);
 const txref     = prefix + '_' + new Date().valueOf();
+const simplePayNowForm = document.querySelector( '.flw-simple-pay-now-form' );
 
-if ( payNowBtn ) {
+if ( simplePayNowForm ) {
 
-  payNowBtn.addEventListener( 'click', ( evt ) => {
-
+  simplePayNowForm.addEventListener( 'submit', ( evt ) => {
     evt.preventDefault();
-
-    email = document.getElementById( 'flw-customer-email' ).value;
+    const form = evt.target;
+    email = email || form.querySelector( '#flw-customer-email' ).value;
+    amount = amount || form.querySelector( '#flw-amount' ).value;
 
     let opts = buildConfigObj();
 
