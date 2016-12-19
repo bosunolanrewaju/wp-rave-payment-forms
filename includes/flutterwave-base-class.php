@@ -45,6 +45,10 @@
         require_once( FLW_DIR_PATH . 'includes/admin-settings.php' );
         require_once( FLW_DIR_PATH . 'includes/vc-elements/simple-vc-pay-now-form.php' );
 
+        if ( is_admin() ) {
+          require_once( FLW_DIR_PATH . 'includes/flutterwave-tinymce-plugin-class.php' );
+        }
+
       }
 
       /**
@@ -57,6 +61,11 @@
 
         FLW_Shortcode::get_instance();
         $admin_settings = FLW_Admin_Settings::get_instance();
+
+        if ( is_admin() ) {
+          FLW_Tinymce_Plugin::get_instance();
+        }
+
 
       }
 

@@ -1,3 +1,9 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+?>
+
 <form class="flw-simple-pay-now-form">
   <div id="notice"></div>
   <?php if ( empty( $atts['email'] ) ) : ?>

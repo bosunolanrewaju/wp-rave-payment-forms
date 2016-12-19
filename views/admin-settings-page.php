@@ -1,3 +1,8 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+?>
 <?php global $admin_settings; ?>
 
   <div class="wrap">
