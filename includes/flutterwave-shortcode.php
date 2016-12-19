@@ -54,15 +54,17 @@
 
         $btn_text = empty( $content ) ? $this->pay_button_text() : $content;
         $email = $this->use_current_user_email( $attr ) ? wp_get_current_user()->user_email : '';
+        $attr['logo'] = $this->get_logo_url( $attr );
 
         $atts = shortcode_atts( array(
           'amount'    => '',
           'country'   => $admin_settings->get_option_value( 'country' ),
           'currency'  => $admin_settings->get_option_value( 'currency' ),
           'desc'      => $admin_settings->get_option_value( 'modal_desc' ),
-          'title'     => $admin_settings->get_option_value( 'modal_title' ),
           'email'     => $email,
+          'logo'      => '',
           'pbkey'     => $admin_settings->get_option_value( 'public_key' ),
+          'title'     => $admin_settings->get_option_value( 'modal_title' ),
           'url'       => $admin_settings->get_option_value( 'redirect_url' ),
         ), $attr );
 
@@ -97,7 +99,7 @@
         global $admin_settings;
 
         $text = $admin_settings->get_option_value( 'btn_text' );
-        if ( empty( $admin_settings->get_option_value( 'btn_text' ) ) ) {
+        if ( empty( $text ) ) {
           $text = 'PAY NOW';
         }
 
@@ -117,6 +119,20 @@
         return isset( $attr['use_current_user_email'] ) && $attr['use_current_user_email'] === 'yes';
 
       }
+
+      private function get_logo_url($attr) {
+
+        global $admin_settings;
+
+        $logo = $admin_settings->get_option_value( 'modal_logo' );
+        if ( ! empty( $attr['logo'] ) ) {
+          $logo = strpos( $attr['logo'], 'http' ) != false ? $attr['logo'] : wp_get_attachment_url( $attr['logo'] );
+        }
+
+        return $logo;
+
+      }
+
     }
 
   }

@@ -1,4 +1,5 @@
 <form class="flw-simple-pay-now-form">
+  <div id="notice"></div>
   <?php if ( empty( $atts['email'] ) ) : ?>
 
     <label class="pay-now"><?php _e( 'Email', 'flw-flutterwave-pay' ) ?></label>

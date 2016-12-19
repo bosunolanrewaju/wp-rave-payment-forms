@@ -51,3 +51,11 @@ label.pay-now {
   font-size: 15px;
   margin-bottom: 0;
 }
+
+.failed {
+  color: #a00;
+}
+
+.success {
+  color: #0a0;
+}
