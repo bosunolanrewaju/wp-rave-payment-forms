@@ -30,6 +30,7 @@ if ( simplePayNowForm ) {
 }
 
 var buildConfigObj = function() {
+
   return {
     amount: amount,
     country: country,
@@ -47,15 +48,35 @@ var buildConfigObj = function() {
       handleResponse( d );
     }
   };
+
 };
 
 var processCheckout = function(opts) {
+
   getpaidSetup( opts );
+
 };
 
 var handleResponse = function(res) {
+
   var status = res.data.data.status;
+  var msg = res.data.data.acctvalrespmsg || res.respmsg;
   var noticeDiv = document.getElementById( 'notice' );
   noticeDiv.className = status;
-  noticeDiv.innerHTML = status + ': ' + res.respmsg;
+
+  if ( status === 'successful' ) {
+
+    msg = 'Payment completed successfully';
+    simplePayNowForm.style.display = 'none';
+
+  }
+
+  noticeDiv.innerHTML = capitalize( status ) + ': ' + msg;
+
 };
+
+var capitalize = function(str) {
+
+  return str.charAt(0).toUpperCase() + str.slice(1);
+
+}
