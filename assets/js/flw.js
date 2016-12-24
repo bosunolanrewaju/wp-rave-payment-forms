@@ -1,29 +1,29 @@
 'use strict';
 
-var amount            = flw_payment_args.amount,
-    button            = flw_payment_args.button,
-    country           = flw_payment_args.country,
-    currency          = flw_payment_args.currency,
-    desc              = flw_payment_args.desc,
-    email             = flw_payment_args.email,
-    logo              = flw_payment_args.logo,
-    prefix            = Math.random().toString(36).substr(2, 3),
-    pbkey             = flw_payment_args.pbkey,
-    simplePayNowForm  = document.querySelector( '.flw-simple-pay-now-form' ),
-    title             = flw_payment_args.title,
-    txref             = prefix + '_' + new Date().valueOf(),
-    url               = flw_payment_args.url;
+var amount    = flw_payment_args.amount,
+    button    = flw_payment_args.button,
+    country   = flw_payment_args.country,
+    currency  = flw_payment_args.currency,
+    desc      = flw_payment_args.desc,
+    email     = flw_payment_args.email,
+    logo      = flw_payment_args.logo,
+    prefix    = Math.random().toString(36).substr(2, 3),
+    pbkey     = flw_payment_args.pbkey,
+    form      = document.querySelector( '.flw-simple-pay-now-form' ),
+    title     = flw_payment_args.title,
+    txref     = prefix + '_' + new Date().valueOf(),
+    url       = flw_payment_args.url;
 
-if ( simplePayNowForm ) {
+if ( form ) {
 
-  simplePayNowForm.addEventListener( 'submit', function(evt) {
+  form.addEventListener( 'submit', function(evt) {
     evt.preventDefault();
     var thisForm = evt.target;
-    amount  = amount  || thisForm.querySelector( '#flw-amount' ).value;
-    email   = email   || thisForm.querySelector( '#flw-customer-email' ).value;
-    var opts = buildConfigObj();
+    amount  = amount || thisForm.querySelector( '#flw-amount' ).value;
+    email   = email  || thisForm.querySelector( '#flw-customer-email' ).value;
+    var config = buildConfigObj();
 
-    processCheckout( opts );
+    processCheckout( config );
 
   } );
 
@@ -52,31 +52,30 @@ var buildConfigObj = function() {
 };
 
 var processCheckout = function(opts) {
-
   getpaidSetup( opts );
-
 };
 
 var handleResponse = function(res) {
 
-  var status = res.data.data.status;
-  var msg = res.data.data.acctvalrespmsg || res.respmsg;
+  console.log(res);
+  var status       = 'failed';
+  var responseCode = ( res.tx.paymentType === 'account' ) ? res.tx.acctvalrespcode : res.tx.vbvrespcode;
+  var responseMsg  = ( res.tx.paymentType === 'account' ) ? res.tx.acctvalrespmsg  : res.tx.vbvrespmessage;
+
+  if ( responseCode === '00' ) {
+    status = 'successful';
+  }
+
   var noticeDiv = document.getElementById( 'notice' );
   noticeDiv.className = status;
 
   if ( status === 'successful' ) {
 
-    msg = 'Payment completed successfully';
-    simplePayNowForm.style.display = 'none';
+    responseMsg = 'Payment completed successfully';
+    form.style.display = 'none';
 
   }
 
-  noticeDiv.innerHTML = capitalize( status ) + ': ' + msg;
+  noticeDiv.innerHTML = responseMsg;
 
 };
-
-var capitalize = function(str) {
-
-  return str.charAt(0).toUpperCase() + str.slice(1);
-
-}
