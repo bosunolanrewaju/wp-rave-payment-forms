@@ -82,10 +82,10 @@
 
         wp_enqueue_style( 'flw_css', FLW_DIR_URL . 'assets/css/flw.css' );
 
-        wp_enqueue_script( 'flwpbf_inline_js', 'http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaid/api/flwpbf-inline.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'flwpbf_inline_js', '//flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/flwpbf-inline.js', array(), '1.0.0', true );
         wp_enqueue_script( 'flw_js', FLW_DIR_URL . 'assets/js/flw.js', array( 'flwpbf_inline_js' ), '1.0.0', true );
 
-        wp_localize_script( 'flw_js', flw_payment_args, $atts );
+        wp_localize_script( 'flw_js', 'flw_payment_args', $atts );
 
       }
 

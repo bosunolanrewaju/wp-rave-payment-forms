@@ -102,18 +102,6 @@
 
       }
 
-      /**
-       * Gets plugin name
-       *
-       * @return string The name of this plugin
-       */
-      public function plugin_name() {
-
-        return $this->plugin_name;
-
-      }
-
-
     }
 
 
