@@ -30,7 +30,7 @@
             </th>
             <td class="forminp forminp-text">
               <input class="regular-text code" type="text" name="flw_flutterwave_options[modal_title]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'modal_title' ) ); ?>" />
-              <p class="description">Optional (default: FLW PAY)</p>
+              <p class="description">(Optional) default: FLW PAY</p>
             </td>
           </tr>
           <!-- Modal Description -->
@@ -40,7 +40,7 @@
             </th>
             <td class="forminp forminp-text">
               <input class="regular-text code" type="text" name="flw_flutterwave_options[modal_desc]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'modal_desc' ) ); ?>" />
-              <p class="description">Optional (default: FLW PAY MODAL)</p>
+              <p class="description">(Optional) default: FLW PAY MODAL</p>
             </td>
           </tr>
           <!-- Modal Logo -->
@@ -50,17 +50,27 @@
             </th>
             <td class="forminp forminp-text">
               <input class="regular-text code" type="text" name="flw_flutterwave_options[modal_logo]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'modal_logo' ) ); ?>" />
-              <p class="description">Optional - Full URL (with 'http') to the custom logo (default: Flutterwave logo)</p>
+              <p class="description">(Optional) - Full URL (with 'http') to the custom logo. default: Flutterwave logo</p>
             </td>
           </tr>
-          <!-- Redirect URL -->
+          <!-- Successful Redirect URL -->
           <tr valign="top">
             <th scope="row">
-              <label for="flw_flutterwave_options[redirect_url]"><?php _e( 'Redirect URL', 'flw-flutterwave-pay' ); ?></label>
+              <label for="flw_flutterwave_options[success_redirect_url]"><?php _e( 'Success Redirect URL', 'flw-flutterwave-pay' ); ?></label>
             </th>
             <td class="forminp forminp-text">
-              <input class="regular-text code" type="text" name="flw_flutterwave_options[redirect_url]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'redirect_url' ) ); ?>" />
-              <p class="description">(Optional) Full URL (with 'http') to redirect to when transaction is completed. default: ""</p>
+              <input class="regular-text code" type="text" name="flw_flutterwave_options[success_redirect_url]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'success_redirect_url' ) ); ?>" />
+              <p class="description">(Optional) Full URL (with 'http') to redirect to for successful transactions. default: ""</p>
+            </td>
+          </tr>
+          <!-- Failed Redirect URL -->
+          <tr valign="top">
+            <th scope="row">
+              <label for="flw_flutterwave_options[failed_redirect_url]"><?php _e( 'Failed Redirect URL', 'flw-flutterwave-pay' ); ?></label>
+            </th>
+            <td class="forminp forminp-text">
+              <input class="regular-text code" type="text" name="flw_flutterwave_options[failed_redirect_url]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'failed_redirect_url' ) ); ?>" />
+              <p class="description">(Optional) Full URL (with 'http') to redirect to for failed transactions. default: ""</p>
             </td>
           </tr>
           <!-- Pay Button Text -->
@@ -70,7 +80,7 @@
             </th>
             <td class="forminp forminp-text">
               <input class="regular-text code" type="text" name="flw_flutterwave_options[btn_text]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'btn_text' ) ); ?>" />
-              <p class="description">Optional (default: PAY NOW)</p>
+              <p class="description">(Optional) default: PAY NOW</p>
             </td>
           </tr>
           <!-- Currency -->
@@ -86,7 +96,7 @@
                 <option value="GBP" <?php selected( $currency, 'GBP' ) ?>>GBP</option>
                 <option value="EUR" <?php selected( $currency, 'EUR' ) ?>>EUR</option>
               </select>
-              <p class="description">Optional (default: NGN)</p>
+              <p class="description">(Optional) default: NGN</p>
             </td>
           </tr>
           <!-- Country -->
@@ -102,7 +112,7 @@
                 <option value="KE" <?php selected( $country, 'KE' ) ?>>KE: Kenya</option>
                 <option value="US" <?php selected( $country, 'US' ) ?>>All (Worldwide)</option>
               </select>
-              <p class="description">Optional (default: NG)</p>
+              <p class="description">(Optional) default: NG</p>
             </td>
           </tr>
 

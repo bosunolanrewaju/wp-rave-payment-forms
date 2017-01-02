@@ -19,6 +19,6 @@
     <input id="flw-amount" type="text" placeholder="<? _e( 'Amount', 'flw-flutterwave-pay' ); ?>" required /><br>
 
   <?php endif; ?>
-
+  <?php wp_nonce_field( 'flw-flutterwave-pay-nonce', 'flw_sec_code' ); ?>
   <button value="submit" class='flw-pay-now-button' href='#'><?php _e( $btn_text, 'flw-flutterwave-pay' ) ?></button>
 </form>

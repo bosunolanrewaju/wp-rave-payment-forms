@@ -32,6 +32,9 @@
 
         add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 
+        add_action( 'wp_ajax_process_payment', array( $this, 'process_payment' ) );
+        add_action( 'wp_ajax_nopriv_process_payment', array( $this, 'process_payment' ) );
+
       }
 
       /**
@@ -42,7 +45,8 @@
       private function include_files() {
 
         require_once( FLW_DIR_PATH . 'includes/flutterwave-shortcode.php' );
-        require_once( FLW_DIR_PATH . 'includes/admin-settings.php' );
+        require_once( FLW_DIR_PATH . 'includes/flutterwave-admin-settings.php' );
+        require_once( FLW_DIR_PATH . 'includes/flutterwave-payment-list-class.php' );
         require_once( FLW_DIR_PATH . 'includes/vc-elements/simple-vc-pay-now-form.php' );
 
         if ( is_admin() ) {
@@ -57,9 +61,13 @@
        * @return void
        */
       private function init() {
+
         global $admin_settings;
+        global $payment_list;
 
         FLW_Shortcode::get_instance();
+
+        $payment_list   = FLW_Payment_List::get_instance();
         $admin_settings = FLW_Admin_Settings::get_instance();
 
         if ( is_admin() ) {
@@ -83,6 +91,61 @@
           echo  __( 'Flutterwave Pay is installed. - ', 'flutterwave-pay' );
           echo "<a href=" . esc_url( add_query_arg( 'page', $this->plugin_name, admin_url( 'admin.php' ) ) ) . " class='button-primary'>" . __( 'Enter your Flutterwave Public Key to start accepting payments', 'flutterwave-pay' ) . "</a>";
           echo '</p></div>';
+        }
+
+      }
+
+      /**
+       * Processes payment record information
+       *
+       * @return void
+       */
+      public function process_payment() {
+
+        global $admin_settings;
+
+        check_ajax_referer( 'flw-flutterwave-pay-nonce', 'flw_sec_code' );
+
+        $response_code = ( $_POST['paymentType'] === 'account' ) ? $_POST['acctvalrespcode'] : $_POST['vbvrespcode'];
+        $status =  ( $response_code == '00' ) ? 'successful' : 'failed';
+        $args   =  array(
+          'post_type'   => 'payment_list',
+          'post_status' => 'publish',
+          'post_title'       => $_POST['txRef'],
+        );
+
+        $payment_record_id = wp_insert_post( $args, true );
+
+        if ( ! is_wp_error( $payment_record_id )) {
+
+          $post_meta = array(
+            '_flw_payment_amount'   => $_POST['amount'],
+            '_flw_payment_customer' => $_POST['customer']['email'],
+            '_flw_payment_status'   => $status,
+            '_flw_payment_tx_ref'   => $_POST['txRef'],
+          );
+
+          $this->add_post_meta( $payment_record_id, $post_meta );
+
+        }
+
+        $redirect_url_key = $status === 'successful' ? 'success_redirect_url' : 'failed_redirect_url';
+
+        echo json_encode( array( 'status' => $status, 'redirect_url' => $admin_settings->get_option_value( $redirect_url_key ) ) );
+        die();
+
+      }
+
+      /**
+       * Adds metadata to payment list post type
+       *
+       * @param [int]   $post_id  The ID of the post to add metadata to
+       * @param [array] $data     Collection of the data to be added to the post
+       */
+      private function add_post_meta( $post_id, $data ) {
+
+        foreach ($data as $meta_key => $meta_value) {
+          update_post_meta( $post_id, $meta_key, $meta_value );
         }
 
       }

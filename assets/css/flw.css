@@ -54,9 +54,10 @@ label.pay-now {
 
 .failed {
   color: #a00;
+  font-size: 1.5em;
 }
 
 .successful {
   color: #0a0;
-  font-size: 20px;
+  font-size: 1.5em;
 }
