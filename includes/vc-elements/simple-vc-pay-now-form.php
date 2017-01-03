@@ -54,8 +54,8 @@
 
             array(
               'type' => 'checkbox',
-              'heading' => __( 'Use loggedin user email?', 'rave-pay' ),
-              'description' => __( 'Check this if you want the loggedin user\'s email to be used. If unchecked, user will be asked to fill in their email address to complete payment.', 'rave-pay' ),
+              'heading' => __( "Use logged-in user's email?", 'rave-pay' ),
+              'description' => __( "Check this if you want the logged-in user's email to be used. If unchecked or user is not logged in, they will be asked to fill in their email address to complete payment.", 'rave-pay' ),
               'param_name' => 'use_current_user_email',
               'std' => '',
               'value' => array(
