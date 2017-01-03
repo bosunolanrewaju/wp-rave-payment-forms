@@ -1,4 +1,4 @@
-.flw-pay-now-button {
+.flw-simple-pay-now-form button {
   -moz-user-select: none;
   -ms-touch-action: manipulation;
   -ms-user-select: none;
@@ -22,15 +22,15 @@
   white-space: nowrap;
 }
 
-.flw-pay-now-button:hover {
+.flw-simple-pay-now-form button:hover {
   background-color: #3d5a73;
 }
 
-.flw-pay-now-button:active {
+.flw-simple-pay-now-form button:active {
   background-color: #0a2740;
 }
 
-#flw-customer-email, #flw-amount {
+.flw-simple-pay-now-form input {
   border: 1px solid #777;
   border-color: #142a3e;
   border-radius: 4px;
@@ -46,7 +46,7 @@
   white-space: nowrap;
 }
 
-label.pay-now {
+.flw-simple-pay-now-form label {
   display: block;
   font-size: 15px;
   margin-bottom: 0;

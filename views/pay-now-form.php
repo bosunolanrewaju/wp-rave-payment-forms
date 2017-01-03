@@ -10,14 +10,14 @@
   <?php if ( empty( $atts['email'] ) ) : ?>
 
     <label class="pay-now"><?php _e( 'Email', 'rave-pay' ) ?></label>
-    <input id="flw-customer-email" type="email" placeholder="<?php _e( 'Email', 'rave-pay' ) ?>" required /><br>
+    <input class="flw-form-input-text" id="flw-customer-email" type="email" placeholder="<?php _e( 'Email', 'rave-pay' ) ?>" required /><br>
 
   <?php endif; ?>
 
   <?php if ( empty( $atts['amount'] ) ) : ?>
 
     <label class="pay-now"><? _e( 'Amount', 'rave-pay' ); ?></label>
-    <input id="flw-amount" type="text" placeholder="<? _e( 'Amount', 'rave-pay' ); ?>" required /><br>
+    <input class="flw-form-input-text" id="flw-amount" type="text" placeholder="<? _e( 'Amount', 'rave-pay' ); ?>" required /><br>
 
   <?php endif; ?>
   <?php wp_nonce_field( 'flw-rave-pay-nonce', 'flw_sec_code' ); ?>

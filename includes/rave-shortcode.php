@@ -20,6 +20,7 @@
 
       function __construct() {
 
+        add_action( 'wp_enqueue_scripts', array( $this, 'load_css_files' ) );
         add_shortcode( 'flw-pay-button', array( $this, 'pay_button_shortcode' ) );
 
       }
@@ -60,7 +61,7 @@
           'email'     => $email,
         ), $attr );
 
-        $this->load_static_files( $atts );
+        $this->load_js_files();
         $this->render_payment_form( $atts, $btn_text );
 
       }
@@ -77,11 +78,11 @@
       }
 
       /**
-       * Loads static javascript files
+       * Loads javascript files
        *
        * @return void
        */
-      private function load_static_files( $atts ) {
+      public function load_js_files() {
 
         global $admin_settings;
 
@@ -95,12 +96,25 @@
           'title'     => $admin_settings->get_option_value( 'modal_title' ),
         );
 
-        wp_enqueue_style( 'flw_css', FLW_DIR_URL . 'assets/css/flw.css' );
 
         wp_enqueue_script( 'flwpbf_inline_js', '//flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/flwpbf-inline.js', array(), '1.0.0', true );
         wp_enqueue_script( 'flw_js', FLW_DIR_URL . 'assets/js/flw.js', array( 'flwpbf_inline_js', 'jquery' ), '1.0.0', true );
 
         wp_localize_script( 'flw_js', 'flw_rave_options', $args );
+
+      }
+      /**
+       * Loads css files
+       *
+       * @return void
+       */
+      public function load_css_files() {
+
+        global $admin_settings;
+
+        if ( 'yes' !== $admin_settings->get_option_value( 'theme_style' ) ) {
+          wp_enqueue_style( 'flw_css', FLW_DIR_URL . 'assets/css/flw.css', false );
+        }
 
       }
 

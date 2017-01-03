@@ -116,6 +116,23 @@
             </td>
           </tr>
 
+          <!-- Styling -->
+          <tr valign="top">
+            <th scope="row">
+              <label for="flw_rave_options[country]"><?php _e( 'Form Style', 'rave-pay' ); ?></label>
+            </th>
+            <td class="forminp forminp-checkbox">
+              <fieldset>
+                <?php $theme_style = esc_attr( $admin_settings->get_option_value( 'theme_style' ) ); ?>
+                <label>
+                  <input type="checkbox" name="flw_rave_options[theme_style]" <?php checked( $theme_style, 'yes' ); ?> value="yes" />
+                  <?php _e( 'Use default theme style', 'rave-pay' ); ?>
+                </label>
+                <p class="description">Override the form style and use the default theme's style</p>
+              </fieldset>
+            </td>
+          </tr>
+
         </tbody>
       </table>
       <?php submit_button(); ?>
