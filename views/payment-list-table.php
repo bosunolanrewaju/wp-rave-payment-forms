@@ -5,7 +5,7 @@
 ?>
 
 <div class="wrap">
-  <h2>FLutterwave Rave Payment List</h2>
+  <h2>Rave Transactions</h2>
 
   <div id="poststuff">
     <div id="post-body" class="metabox-holder">

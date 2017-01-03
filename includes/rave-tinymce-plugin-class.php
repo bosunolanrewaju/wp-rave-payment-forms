@@ -7,7 +7,7 @@
   if ( ! class_exists( 'FLW_Tinymce_Plugin' ) ) {
 
     /**
-    * Flutterwave Tinymce Plugin Class
+    * Rave Tinymce Plugin Class
     */
     class FLW_Tinymce_Plugin {
 
@@ -23,7 +23,7 @@
        */
       function __construct() {
 
-        add_action( 'admin_init', array( $this, 'flw_shortcode_button_init' ) );
+        add_action( 'admin_init', array( $this, 'flw_rave_shortcode_button_init' ) );
 
       }
 
@@ -32,12 +32,12 @@
        *
        * @return void
        */
-      public function flw_shortcode_button_init() {
+      public function flw_rave_shortcode_button_init() {
 
         if ( current_user_can('edit_posts') && current_user_can('edit_pages') ) {
 
-          add_filter( 'mce_external_plugins', array( $this, 'flw_register_tinymce_plugin' ) );
-          add_filter( 'mce_buttons', array( $this, 'flw_add_tinymce_button' ) );
+          add_filter( 'mce_external_plugins', array( $this, 'flw_rave_register_tinymce_plugin' ) );
+          add_filter( 'mce_buttons', array( $this, 'flw_rave_add_tinymce_button' ) );
 
         }
 
@@ -50,7 +50,7 @@
        *
        * @return array          List of all the plugins including this one
        */
-      public function flw_register_tinymce_plugin( $plugins ) {
+      public function flw_rave_register_tinymce_plugin( $plugins ) {
 
         $plugins['flw_button'] = FLW_DIR_URL . 'assets/js/flw-tinymce.js';
         return $plugins;
@@ -58,13 +58,13 @@
       }
 
       /**
-       * Adds the flutterwave tinymce button
+       * Adds the rave tinymce button
        *
        * @param  array $buttons Existing buttons
        *
        * @return array          Existing button including our own
        */
-      public function flw_add_tinymce_button( $buttons ) {
+      public function flw_rave_add_tinymce_button( $buttons ) {
 
           array_push( $buttons, 'separator', 'flw_button' );
           return $buttons;

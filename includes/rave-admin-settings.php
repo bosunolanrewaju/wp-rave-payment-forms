@@ -7,12 +7,12 @@
     exit;
   }
 
-  if ( ! class_exists( 'FLW_Admin_Settings' ) ) {
+  if ( ! class_exists( 'FLW_Rave_Admin_Settings' ) ) {
 
     /**
     * Admin Settings class
     */
-    class FLW_Admin_Settings {
+    class FLW_Rave_Admin_Settings {
 
       /**
        * Class instance
@@ -33,8 +33,8 @@
       private function __construct() {
 
         // $this->flw_add_admin_menu();
-        add_action( 'admin_menu', array( $this, 'flw_add_admin_menu' ) );
-        add_action( 'admin_init', array( $this, 'register_settings' ) );
+        add_action( 'admin_menu', array( $this, 'flw_rave_add_admin_menu' ) );
+        add_action( 'admin_init', array( $this, 'flw_rave_register_settings' ) );
         $this->init_settings();
 
       }
@@ -44,16 +44,16 @@
        *
        * @return void
        */
-      public function register_settings() {
+      public function flw_rave_register_settings() {
 
-        register_setting( 'flw-flutterwave-pay-settings-group', 'flw_flutterwave_options' );
+        register_setting( 'flw-rave-settings-group', 'flw_rave_options' );
 
       }
 
       private function init_settings() {
 
-        if ( false == get_option( 'flw_flutterwave_options' ) ) {
-          update_option( 'flw_flutterwave_options', array() );
+        if ( false == get_option( 'flw_rave_options' ) ) {
+          update_option( 'flw_rave_options', array() );
         }
 
       }
@@ -67,7 +67,7 @@
        */
       public function get_option_value( $attr ) {
 
-        $options = get_option( 'flw_flutterwave_options' );
+        $options = get_option( 'flw_rave_options' );
 
         if ( array_key_exists($attr, $options) ) {
 
@@ -86,7 +86,7 @@
        */
       public function is_public_key_present() {
 
-        $options = get_option( 'flw_flutterwave_options' );
+        $options = get_option( 'flw_rave_options' );
 
         if ( false == $options ) return false;
 
@@ -115,16 +115,25 @@
        * Add admin menu
        * @return void
        */
-      public function flw_add_admin_menu() {
+      public function flw_rave_add_admin_menu() {
 
         add_menu_page(
-          __( 'Flutterwave Pay', 'flw-flutterwave-pay' ),
-          'Flutterwave Pay',
+          __( 'Rave Settings Page', 'rave-pay' ),
+          'Rave',
           'manage_options',
-          'flutterwave-pay',
-          array( $this, 'flw_admin_setting_page' ),
-          FLW_DIR_URL . 'assets/images/flutterwave-icon.png',
-          99
+          'rave-payment-forms',
+          array( $this, 'flw_rave_admin_setting_page' ),
+          FLW_DIR_URL . 'assets/images/rave-icon.jpg',
+          58
+        );
+
+        add_submenu_page(
+          'rave-payment-forms',
+          __( 'Rave Payment Forms Settings', 'rave-pay' ),
+          __( 'Settings', 'rave-pay' ),
+          'manage_options',
+          'rave-payment-forms',
+          array( $this, 'flw_rave_admin_setting_page' )
         );
 
       }
@@ -133,7 +142,7 @@
        * Admin page content
        * @return void
        */
-      public function flw_admin_setting_page() {
+      public function flw_rave_admin_setting_page() {
 
         include_once( FLW_DIR_PATH . 'views/admin-settings-page.php' );
 

@@ -3,7 +3,7 @@
 (function() {
   tinymce.create('tinymce.plugins.flw_plugin', {
     init: function( editor, url ) {
-
+      var assetsUrl = url.replace( '/js', '/' );
       editor.addCommand('flw_insert_shortcode', function() {
 
         var selected  = tinymce.activeEditor.selection.getContent();
@@ -13,9 +13,9 @@
       });
 
       editor.addButton( 'flw_button', {
-        title : 'Insert shortcode',
+        title : 'Insert Rave payment shortcode',
         cmd   : 'flw_insert_shortcode',
-        image : 'http://sample.net/haute/wp-content/plugins/flutterwave-pay/assets/images/flutterwave-icon.png',
+        image : assetsUrl +'images/rave-icon.png',
       } );
     },
   });

@@ -7,9 +7,9 @@
     exit;
   }
 
-  if ( ! class_exists( 'FLW_Shortcode' ) ) {
+  if ( ! class_exists( 'FLW_Rave_Shortcode' ) ) {
 
-    class FLW_Shortcode {
+    class FLW_Rave_Shortcode {
 
       /**
        * Class instance variable
@@ -47,7 +47,6 @@
        * @return string      Pay Now button html content
        */
       public function pay_button_shortcode( $attr, $content="" ) {
-
         global $admin_settings;
 
         if ( ! $admin_settings->is_public_key_present() ) return;
@@ -58,19 +57,23 @@
 
         $atts = shortcode_atts( array(
           'amount'    => '',
-          'cb_url'    => admin_url( 'admin-ajax.php' ),
-          'country'   => $admin_settings->get_option_value( 'country' ),
-          'currency'  => $admin_settings->get_option_value( 'currency' ),
-          'desc'      => $admin_settings->get_option_value( 'modal_desc' ),
           'email'     => $email,
-          'logo'      => '',
-          'pbkey'     => $admin_settings->get_option_value( 'public_key' ),
-          'title'     => $admin_settings->get_option_value( 'modal_title' ),
         ), $attr );
 
         $this->load_static_files( $atts );
+        $this->render_payment_form( $atts, $btn_text );
 
-        include_once( FLW_DIR_PATH . 'views/pay-now-form.php' );
+      }
+
+      public function render_payment_form( $atts, $btn_text ) {
+
+        $data_attr = '';
+        foreach ($atts as $att_key => $att_value) {
+          $data_attr .= ' data-' . $att_key . '="' . $att_value . '"';
+        }
+
+        include( FLW_DIR_PATH . 'views/pay-now-form.php' );
+
       }
 
       /**
@@ -80,12 +83,24 @@
        */
       private function load_static_files( $atts ) {
 
+        global $admin_settings;
+
+        $args = array(
+          'cb_url'    => admin_url( 'admin-ajax.php' ),
+          'country'   => $admin_settings->get_option_value( 'country' ),
+          'currency'  => $admin_settings->get_option_value( 'currency' ),
+          'desc'      => $admin_settings->get_option_value( 'modal_desc' ),
+          'logo'      => $admin_settings->get_option_value( 'modal_logo' ),
+          'pbkey'     => $admin_settings->get_option_value( 'public_key' ),
+          'title'     => $admin_settings->get_option_value( 'modal_title' ),
+        );
+
         wp_enqueue_style( 'flw_css', FLW_DIR_URL . 'assets/css/flw.css' );
 
         wp_enqueue_script( 'flwpbf_inline_js', '//flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/flwpbf-inline.js', array(), '1.0.0', true );
         wp_enqueue_script( 'flw_js', FLW_DIR_URL . 'assets/js/flw.js', array( 'flwpbf_inline_js', 'jquery' ), '1.0.0', true );
 
-        wp_localize_script( 'flw_js', 'flw_payment_args', $atts );
+        wp_localize_script( 'flw_js', 'flw_rave_options', $args );
 
       }
 

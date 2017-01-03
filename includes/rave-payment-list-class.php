@@ -1,6 +1,6 @@
 <?php
   /**
-   * Payment List
+   * Rave Payment List
    */
   if ( ! defined( 'ABSPATH' ) ) { exit; }
 
@@ -9,16 +9,15 @@
   require_once( ABSPATH . 'wp-admin/includes/class-wp-screen.php');
   if( ! class_exists( 'FLW_WP_List_Table' ) ) {
     require_once( FLW_DIR_PATH . 'includes/wp-classes/class-wp-list-table.php' );
-
   }
 
-  if ( ! class_exists( 'FLW_Product' ) ) {
+  if ( ! class_exists( 'FLW_Rave_Payment_List' ) ) {
 
     /**
      * Payment List Class to add list payments made
      * via the payment buttons
      */
-    class FLW_Payment_List extends FLW_WP_List_Table {
+    class FLW_Rave_Payment_List extends FLW_WP_List_Table {
 
       /**
        * Class Instance
@@ -32,8 +31,8 @@
       public function __construct() {
 
         parent::__construct( array(
-          'singular' => __( 'Payment List', 'flw-flutterwave-pay' ),
-          'plural'   => __( 'Payment Lists', 'flw-flutterwave-pay' ),
+          'singular' => __( 'Payment List', 'rave-pay' ),
+          'plural'   => __( 'Payment Lists', 'rave-pay' ),
           'ajax'     => false
         ) );
 
@@ -50,7 +49,7 @@
        *
        */
       public function no_items() {
-        _e( 'No payments have been made yet.', 'flw-flutterwave-pay' );
+        _e( 'No payments have been made yet.', 'rave-pay' );
       }
 
       /**
@@ -62,18 +61,10 @@
        */
       public function column_tx_ref( $item ) {
 
-        // create a nonce
-        $delete_nonce = wp_create_nonce( 'flw_delete_payment' );
-
-        $title = '<strong>' . get_post_meta( $item->ID, '_flw_payment_tx_ref', true ) . '</strong>';
+        $title = '<strong>' . get_post_meta( $item->ID, '_flw_rave_payment_tx_ref', true ) . '</strong>';
 
         $actions = array(
-          'delete' => sprintf(
-            '<a href="?post=%s&action=%s&_wpnonce=%s">Delete</a>',
-            absint( $item->ID ),
-            'trash',
-            $delete_nonce
-          )
+          'delete' => sprintf( '<a href="%s">Delete</a>', get_delete_post_link( absint( $item->ID ) ) )
         );
 
         return $title . $this->row_actions( $actions );
@@ -95,7 +86,7 @@
           case 'amount':
           case 'customer':
           case 'status':
-            return get_post_meta( $item->ID, '_flw_payment_' . $column_name, true );
+            return get_post_meta( $item->ID, '_flw_rave_payment_' . $column_name, true );
           case 'date':
             return $item->post_date;
           default:
@@ -115,11 +106,11 @@
 
         $columns = array(
           'cb'      => '<input type="checkbox" />',
-          'tx_ref'    => __( 'Transaction Ref', 'flw-flutterwave-pay' ),
-          'customer' => __( 'Customer', 'flw-flutterwave-pay' ),
-          'amount'    => __( 'Amount (' . $admin_settings->get_option_value( 'currency' ) . ')', 'flw-flutterwave-pay' ),
-          'status'  => __( 'Status', 'flw-flutterwave-pay' ),
-          'date'  => __( 'Date', 'flw-flutterwave-pay' ),
+          'tx_ref'  => __( 'Transaction Ref', 'rave-pay' ),
+          'customer' => __( 'Customer', 'rave-pay' ),
+          'amount'  => __( 'Amount (' . $admin_settings->get_option_value( 'currency' ) . ')', 'rave-pay' ),
+          'status'  => __( 'Status', 'rave-pay' ),
+          'date'    => __( 'Date', 'rave-pay' ),
         );
 
         return $columns;
@@ -174,9 +165,16 @@
 
       public function add_to_menu() {
 
-        $hook = add_menu_page( 'Flutterwave Rave Payment List', 'Rave Payments', 'manage_options', 'flw_payment_list', array( $this, 'payment_list_table') );
+        $hook = add_submenu_page(
+          'rave-payment-forms',
+          __( 'Rave Transaction List', 'rave-pay' ),
+          __( 'Transactions', 'rave-pay' ),
+          'manage_options',
+          'flw_payment_list',
+          array( $this, 'payment_list_table')
+        );
 
-        add_action( "load-$hook", array( $this, 'screen_option' ) );
+        // add_action( "load-$hook", array( $this, 'screen_option' ) );
 
       }
 
@@ -228,7 +226,7 @@
       }
 
       /**
-       * Gets the total payments made through Flutterwave
+       * Gets the total payments made through Rave
        *
        * @return int The total number of payments
        *
@@ -246,37 +244,17 @@
        */
       public function add_payment_list_post_type() {
 
-        $labels = array(
-          'name'                => _x( 'Payment Lists', 'Post Type General Name', 'flw-flutterwave-pay' ),
-          'singular_name'       => _x( 'Payment List', 'Post Type Singular Name', 'flw-flutterwave-pay' ),
-          'menu_name'           => __( 'Rave Payments', 'flw-flutterwave-pay' ),
-          'all_items'           => __( 'All Payments', 'flw-flutterwave-pay' ),
-          'view_item'           => __( 'View Payment', 'flw-flutterwave-pay' ),
-          // 'add_new_item'        => __( 'Add New Payment', 'flw-flutterwave-pay' ),
-          // 'add_new'             => __( 'Add New', 'flw-flutterwave-pay' ),
-          'edit_item'           => __( 'Edit Payment', 'flw-flutterwave-pay' ),
-          'update_item'         => __( 'Update Payment', 'flw-flutterwave-pay' ),
-          'search_items'        => __( 'Search Payment', 'flw-flutterwave-pay' ),
-          'not_found'           => __( 'Not Found', 'flw-flutterwave-pay' ),
-          'not_found_in_trash'  => __( 'Not found in Trash', 'flw-flutterwave-pay' ),
-        );
-
         $args = array(
-          'label'               => __( 'Payment Lists', 'twentythirteen' ),
-          'description'         => __( 'Flutterwave Rave payment list', 'twentythirteen' ),
-          'labels'              => $labels,
+          'label'               => __( 'Payment Lists', 'rave-pay' ),
+          'description'         => __( 'Rave payment lists', 'rave-pay' ),
           'supports'            => array( 'title', 'author', 'custom-fields', ),
           'hierarchical'        => false,
           'public'              => false,
-          'show_ui'             => false,
+          'show_ui'             => true,
           'show_in_menu'        => false,
           'show_in_nav_menus'   => false,
           'show_in_admin_bar'   => false,
-          'menu_position'       => null,
-          'can_export'          => true,
-          'has_archive'         => true,
           'exclude_from_search' => true,
-          'publicly_queryable'  => true,
           'capability_type'     => 'post',
         );
 

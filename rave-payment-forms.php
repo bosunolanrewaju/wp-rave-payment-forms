@@ -1,8 +1,8 @@
 <?php
   /*
-  Plugin Name: Flutterwave Pay
+  Plugin Name: Rave Payment Forms
   Plugin URI: http://flutterwave.com/
-  Description: A payment gateway for Flutterwave Pay.
+  Description: Rave payment gateway forms.
   Version: 0.0.1
   Author: Bosun Olanrewaju
   Author URI: http://twitter.com/bosunolanrewaju
@@ -28,10 +28,10 @@
     define( 'FLW_DIR_URL', plugin_dir_url( __FILE__ ) );
   }
 
-  require_once( FLW_DIR_PATH . 'includes/flutterwave-base-class.php' );
+  require_once( FLW_DIR_PATH . 'includes/rave-base-class.php' );
 
   global $flw_pay_class;
 
-  $flw_pay_class = FLW_Flutterwave_Pay::get_instance();
+  $flw_pay_class = FLW_Rave_Pay::get_instance();
 
 ?>

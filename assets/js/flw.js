@@ -1,29 +1,13 @@
 'use strict';
 
-var amount    = flw_payment_args.amount,
-    button    = flw_payment_args.button,
-    cbUrl     = flw_payment_args.cb_url,
-    country   = flw_payment_args.country,
-    currency  = flw_payment_args.currency,
-    desc      = flw_payment_args.desc,
-    email     = flw_payment_args.email,
-    logo      = flw_payment_args.logo,
-    prefix    = Math.random().toString(36).substr(2, 3).toUpperCase(),
-    pbkey     = flw_payment_args.pbkey,
-    form      = jQuery( '.flw-simple-pay-now-form' ),
-    title     = flw_payment_args.title,
-    txref, redirectUrl;
+var form = jQuery( '.flw-simple-pay-now-form' ),
+    redirectUrl;
 
 if ( form ) {
 
   form.on( 'submit', function(evt) {
     evt.preventDefault();
-    var thisForm = evt.target;
-    amount  = amount || thisForm.querySelector( '#flw-amount' ).value;
-    email   = email  || thisForm.querySelector( '#flw-customer-email' ).value;
-    txref   = 'WP_' + prefix + '_' + new Date().valueOf();
-    var config = buildConfigObj();
-
+    var config = buildConfigObj( this );
     processCheckout( config );
 
   } );
@@ -35,24 +19,27 @@ if ( form ) {
  *
  * @return object - The config object
  */
-var buildConfigObj = function() {
+var buildConfigObj = function( form ) {
+  var formData = jQuery( form ).data();
+  var amount  = formData.amount || jQuery( form ).find( '#flw-amount' ).val();
+  var email   = formData.email  || jQuery( form ).find( '#flw-customer-email' ).val();
+  var txref   = 'WP_' + form.id.toUpperCase() + '_' + new Date().valueOf();
 
   return {
     amount: amount,
-    country: country,
-    currency: currency,
-    custom_description: desc,
-    custom_logo: logo,
-    custom_title: title,
+    country: flw_rave_options.country,
+    currency: flw_rave_options.currency,
+    custom_description: flw_rave_options.desc,
+    custom_logo: flw_rave_options.logo,
+    custom_title: flw_rave_options.title,
     customer_email: email,
-    pay_button_text: button,
-    PBFPubKey: pbkey,
+    PBFPubKey: flw_rave_options.pbkey,
     txref: txref,
     onclose: function() {
       redirectTo( redirectUrl );
     },
-    callback: function(d) {
-      sendPaymentRequestResponse( d );
+    callback: function(res) {
+      sendPaymentRequestResponse( res, form );
     }
   };
 
@@ -69,16 +56,16 @@ var processCheckout = function(opts) {
  *
  * @return void
  */
-var sendPaymentRequestResponse = function( res ) {
-  var args = {
+var sendPaymentRequestResponse = function( res, form ) {
+  var args  = {
     action: 'process_payment',
-    flw_sec_code: jQuery( '#flw_sec_code' ).val(),
+    flw_sec_code: jQuery( form ).find( '#flw_sec_code' ).val(),
   };
 
   var dataObj = Object.assign( {}, args, res.tx );
 
   jQuery
-    .post( cbUrl, dataObj )
+    .post( flw_rave_options.cb_url, dataObj )
     .success( function(data) {
       var response  = JSON.parse( data );
       redirectUrl   = response.redirect_url;
@@ -86,7 +73,13 @@ var sendPaymentRequestResponse = function( res ) {
       if ( redirectUrl === '' ) {
 
         var responseMsg  = ( res.tx.paymentType === 'account' ) ? res.tx.acctvalrespmsg  : res.tx.vbvrespmessage;
-        jQuery( '#notice' ).text( responseMsg ).removeClass( existingClasses ).addClass( response.status );
+        jQuery( form )
+          .find( '#notice' )
+          .text( responseMsg )
+          .removeClass( function() {
+            return jQuery( form ).find( '#notice' ).attr( 'class' );
+          } )
+          .addClass( response.status );
 
       } else {
 
@@ -106,21 +99,8 @@ var sendPaymentRequestResponse = function( res ) {
  */
 var redirectTo = function( url ) {
 
-  if ( url !== '' ) {
-
+  if ( url ) {
     location.href = url;
-
   }
-
-};
-
-/**
- * Returns existing classes on the #notice element
- *
- * @return string - Space separated lists of classes
- */
-var existingClasses = function() {
-
-  return jQuery( '#notice' ).attr( 'class' );
 
 };
