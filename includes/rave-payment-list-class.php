@@ -70,6 +70,11 @@
         return $title . $this->row_actions( $actions );
       }
 
+      public function column_amount( $item ) {
+        $amount = get_post_meta( $item->ID, '_flw_rave_payment_amount', true );
+        return number_format( $amount, 2 );
+      }
+
       /**
        * Renders a column when no column specific method exists.
        *
@@ -83,7 +88,6 @@
         switch ( $column_name ) {
           // case 'tx_ref':
           //   return $column_name;
-          case 'amount':
           case 'customer':
           case 'status':
             return get_post_meta( $item->ID, '_flw_rave_payment_' . $column_name, true );
