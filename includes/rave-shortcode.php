@@ -62,7 +62,13 @@
         ), $attr );
 
         $this->load_js_files();
+
+        ob_start();
         $this->render_payment_form( $atts, $btn_text );
+        $form = ob_get_contents();
+        ob_end_clean();
+
+        return $form;
 
       }
 
