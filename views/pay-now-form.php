@@ -1,7 +1,7 @@
 <?php
 
   if ( ! defined( 'ABSPATH' ) ) { exit; }
-  $form_id = bin2hex( openssl_random_pseudo_bytes( 2 ) );
+  $form_id = FLW_Rave_Pay::gen_rand_string();
 
 ?>
 
@@ -17,8 +17,8 @@
 
     <?php if ( empty( $atts['amount'] ) ) : ?>
 
-      <label class="pay-now"><? _e( 'Amount', 'rave-pay' ); ?></label>
-      <input class="flw-form-input-text" id="flw-amount" type="text" placeholder="<? _e( 'Amount', 'rave-pay' ); ?>" required /><br>
+      <label class="pay-now"><?php _e( 'Amount', 'rave-pay' ); ?></label>
+      <input class="flw-form-input-text" id="flw-amount" type="text" placeholder="<?php _e( 'Amount', 'rave-pay' ); ?>" required /><br>
 
     <?php endif; ?>
     <?php wp_nonce_field( 'flw-rave-pay-nonce', 'flw_sec_code' ); ?>

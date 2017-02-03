@@ -136,6 +136,13 @@
 
       }
 
+      public static function gen_rand_string($len=4) {
+        if (version_compare(PHP_VERSION, '5.3.0') <= 0) {
+            return substr( md5(rand()), 0, $len);
+        }
+        return bin2hex( openssl_random_pseudo_bytes( $len/2 ) );
+      }
+
       /**
        * Adds metadata to payment list post type
        *
