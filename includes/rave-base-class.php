@@ -158,13 +158,13 @@
       }
 
       private function _fetchTransaction( $tx_ref, $secret_key ) {
-        $url = "http:" . $this->get_api_base_url() . "/tx/verify?tx_ref=$tx_ref&seckey=$secret_key";
+        $url = "https:" . $this->get_api_base_url() . "/tx/verify?tx_ref=$tx_ref&seckey=$secret_key";
         $response = wp_remote_get( $url );
         $result = wp_remote_retrieve_response_code( $response );
         if( $result === 200 ){
           return wp_remote_retrieve_body( $response );
         }
-        return [];
+        return array();
       }
 
       /**
