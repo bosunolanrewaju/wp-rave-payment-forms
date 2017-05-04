@@ -15,7 +15,7 @@
     class FLW_Rave_Pay {
 
       private $plugin_name = 'rave-payment-forms';
-      private $api_base_url = '//flw-pms-dev.eu-west-1.elasticbeanstalk.com/';
+      private $api_base_url = 'http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/';
 
       /**
        * Instance variable
@@ -28,8 +28,8 @@
        */
       function __construct() {
 
-        $this->include_files();
-        $this->init();
+        $this->_include_files();
+        $this->_init();
 
         add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 
@@ -43,7 +43,7 @@
        *
        * @return void
        */
-      private function include_files() {
+      private function _include_files() {
 
         require_once( FLW_DIR_PATH . 'includes/rave-shortcode.php' );
         require_once( FLW_DIR_PATH . 'includes/rave-admin-settings.php' );
@@ -61,7 +61,7 @@
        *
        * @return void
        */
-      private function init() {
+      private function _init() {
 
         global $admin_settings;
         global $payment_list;
@@ -76,8 +76,19 @@
         }
 
         if ($admin_settings->get_option_value( 'go_live' ) === 'yes' ) {
-          $this->api_base_url = '//api.ravepay.co/';
+          $this->api_base_url = 'https://api.ravepay.co/';
         }
+
+      }
+
+      /**
+       * Exposes the api base url
+       *
+       * @return string rave api base url
+       */
+      public function get_api_base_url() {
+
+        return $this->api_base_url;
 
       }
 
@@ -113,10 +124,12 @@
         check_ajax_referer( 'flw-rave-pay-nonce', 'flw_sec_code' );
 
         $tx_ref = $_POST['txRef'];
+        $flw_ref = $_POST['flwRef'];
         $secret_key = $admin_settings->get_option_value( 'secret_key' );
 
-        $txn = json_decode( $this->_fetchTransaction($tx_ref, $secret_key) );
-        if ( ! empty($txn->data) && $txn->data->status === 'successful' ) {
+        $txn = json_decode( $this->_fetchTransaction( $flw_ref, $secret_key ) );
+
+        if ( ! empty($txn->data) && $this->_is_successful( $txn->data ) ) {
           $status =  $txn->data->status;
           $args   =  array(
             'post_type'   => 'payment_list',
@@ -146,25 +159,54 @@
 
       }
 
-      public function get_api_base_url() {
-        return $this->api_base_url;
-      }
+      public static function gen_rand_string( $len = 4 ) {
 
-      public static function gen_rand_string($len=4) {
-        if (version_compare(PHP_VERSION, '5.3.0') <= 0) {
-            return substr( md5(rand()), 0, $len);
+        if ( version_compare( PHP_VERSION, '5.3.0' ) <= 0 ) {
+            return substr( md5( rand() ), 0, $len );
         }
         return bin2hex( openssl_random_pseudo_bytes( $len/2 ) );
+
       }
 
-      private function _fetchTransaction( $tx_ref, $secret_key ) {
-        $url = "https:" . $this->get_api_base_url() . "/tx/verify?tx_ref=$tx_ref&seckey=$secret_key";
-        $response = wp_remote_get( $url );
+      /**
+       * Fetches transaction from rave enpoint
+       *
+       * @param $tx_ref string the transaction to fetch
+       *
+       * @return string
+       */
+      private function _fetchTransaction( $flw_ref, $sckey ) {
+
+        $url = $this->api_base_url . 'flwv3-pug/getpaidx/api/verify';
+        $args = array(
+          'body' => array(
+            'flw_ref' => $flw_ref,
+            'SECKEY' => $sckey ),
+          'sslverify' => false
+        );
+
+        $response = wp_remote_post( $url, $args );
         $result = wp_remote_retrieve_response_code( $response );
+
         if( $result === 200 ){
           return wp_remote_retrieve_body( $response );
         }
-        return array();
+
+        return $result;
+
+      }
+
+      /**
+       * Checks if payment is successful
+       *
+       * @param $data object the transaction object to do the check on
+       *
+       * @return boolean
+       */
+      private function _is_successful( $data ) {
+
+        return $data->flwMeta->chargeResponse === '00' || $data->flwMeta->chargeResponse === '0';
+
       }
 
       /**

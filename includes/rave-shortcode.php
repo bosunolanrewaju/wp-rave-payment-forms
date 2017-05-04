@@ -48,6 +48,7 @@
        * @return string      Pay Now button html content
        */
       public function pay_button_shortcode( $attr, $content="" ) {
+
         global $admin_settings;
 
         if ( ! $admin_settings->is_public_key_present() ) return;
