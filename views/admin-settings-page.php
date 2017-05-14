@@ -118,6 +118,8 @@
               <select class="regular-text code" name="flw_rave_options[currency]">
                 <?php $currency = esc_attr( $admin_settings->get_option_value( 'currency' ) ); ?>
                 <option value="NGN" <?php selected( $currency, 'NGN' ) ?>>NGN</option>
+                <option value="GHS" <?php selected( $currency, 'GHS' ) ?>>GHS</option>
+                <option value="KES" <?php selected( $currency, 'KES' ) ?>>KES</option>
                 <option value="USD" <?php selected( $currency, 'USD' ) ?>>USD</option>
                 <option value="GBP" <?php selected( $currency, 'GBP' ) ?>>GBP</option>
                 <option value="EUR" <?php selected( $currency, 'EUR' ) ?>>EUR</option>
