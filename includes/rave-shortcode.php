@@ -48,6 +48,7 @@
        * @return string      Pay Now button html content
        */
       public function pay_button_shortcode( $attr, $content="" ) {
+
         global $admin_settings;
 
         if ( ! $admin_settings->is_public_key_present() ) return;
@@ -91,6 +92,7 @@
       public function load_js_files() {
 
         global $admin_settings;
+        global $flw_pay_class;
 
         $args = array(
           'cb_url'    => admin_url( 'admin-ajax.php' ),
@@ -102,8 +104,7 @@
           'title'     => $admin_settings->get_option_value( 'modal_title' ),
         );
 
-
-        wp_enqueue_script( 'flwpbf_inline_js', '//flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/flwpbf-inline.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'flwpbf_inline_js', $flw_pay_class->get_api_base_url() . 'flwv3-pug/getpaidx/api/flwpbf-inline.js', array(), '1.0.0', true );
         wp_enqueue_script( 'flw_js', FLW_DIR_URL . 'assets/js/flw.js', array( 'flwpbf_inline_js', 'jquery' ), '1.0.0', true );
 
         wp_localize_script( 'flw_js', 'flw_rave_options', $args );

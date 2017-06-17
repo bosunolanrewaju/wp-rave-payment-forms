@@ -23,6 +23,32 @@
               <p class="description">Your Pay Button public key</p>
             </td>
           </tr>
+          <!-- Secret Key -->
+          <tr valign="top">
+            <th scope="row">
+              <label for="flw_rave_options[secret_key]"><?php _e( 'Pay Button Secret Key', 'rave-pay' ); ?></label>
+            </th>
+            <td class="forminp forminp-text">
+              <input class="regular-text code" type="text" name="flw_rave_options[secret_key]" value="<?php echo esc_attr( $admin_settings->get_option_value( 'secret_key' ) ); ?>" />
+              <p class="description">Your Pay Button secret key</p>
+            </td>
+          </tr>
+
+          <!-- Switch to Live -->
+          <tr valign="top">
+            <th scope="row">
+              <label for="flw_rave_options[go_live]"><?php _e( 'Go Live', 'rave-pay' ); ?></label>
+            </th>
+            <td class="forminp forminp-checkbox">
+              <fieldset>
+                <?php $go_live = esc_attr( $admin_settings->get_option_value( 'go_live' ) ); ?>
+                <label>
+                  <input type="checkbox" name="flw_rave_options[go_live]" <?php checked( $go_live, 'yes' ); ?> value="yes" />
+                  <?php _e( 'Switch to live account', 'rave-pay' ); ?>
+                </label>
+              </fieldset>
+            </td>
+          </tr>
           <!-- Modal title -->
           <tr valign="top">
             <th scope="row">
@@ -92,6 +118,8 @@
               <select class="regular-text code" name="flw_rave_options[currency]">
                 <?php $currency = esc_attr( $admin_settings->get_option_value( 'currency' ) ); ?>
                 <option value="NGN" <?php selected( $currency, 'NGN' ) ?>>NGN</option>
+                <option value="GHS" <?php selected( $currency, 'GHS' ) ?>>GHS</option>
+                <option value="KES" <?php selected( $currency, 'KES' ) ?>>KES</option>
                 <option value="USD" <?php selected( $currency, 'USD' ) ?>>USD</option>
                 <option value="GBP" <?php selected( $currency, 'GBP' ) ?>>GBP</option>
                 <option value="EUR" <?php selected( $currency, 'EUR' ) ?>>EUR</option>
@@ -119,7 +147,7 @@
           <!-- Styling -->
           <tr valign="top">
             <th scope="row">
-              <label for="flw_rave_options[country]"><?php _e( 'Form Style', 'rave-pay' ); ?></label>
+              <label for="flw_rave_options[theme_style]"><?php _e( 'Form Style', 'rave-pay' ); ?></label>
             </th>
             <td class="forminp forminp-checkbox">
               <fieldset>
