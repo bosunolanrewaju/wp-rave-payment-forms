@@ -33,6 +33,7 @@ var buildConfigObj = function( form ) {
     custom_logo: flw_rave_options.logo,
     custom_title: flw_rave_options.title,
     customer_email: email,
+    payment_method: flw_rave_options.method,
     PBFPubKey: flw_rave_options.pbkey,
     txref: txref,
     onclose: function() {
