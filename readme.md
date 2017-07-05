@@ -4,7 +4,7 @@
  - **Tags:** rave, payment form, payment gateway, bank account, credit card, debit card, nigeria, kenya, international, mastercard, visa
  - **Requires at least:** 4.4
  - **Tested up to:** 4.6
- - **Stable tag:** 0.0.1
+ - **Stable tag:** 0.1.2
  - **License:** [MIT](https://github.com/bosunolanrewaju/rave-payment-forms/blob/master/LICENSE)
 
 Take donations and payments for services on your WordPress site using Rave.
@@ -18,7 +18,7 @@ Accept Credit card, Debit card and Bank account payment directly on your WordPre
 
 #### Take donations and payments easily and directly on your site
 
-Signup for an account [here](https://flutterwave.com)
+Signup for an account [here](https://ravepay.co)
 
 Rave is available in:
 

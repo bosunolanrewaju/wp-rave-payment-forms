@@ -59,6 +59,21 @@
               <p class="description">(Optional) default: FLW PAY</p>
             </td>
           </tr>
+          <!-- Method -->
+          <tr valign="top">
+            <th scope="row">
+              <label for="flw_rave_options[method]"><?php _e( 'Payment Method', 'rave-pay' ); ?></label>
+            </th>
+            <td class="forminp forminp-text">
+              <select class="regular-text code" name="flw_rave_options[method]">
+                <?php $method = esc_attr( $admin_settings->get_option_value( 'method' ) ); ?>
+                <option value="both" <?php selected( $method, 'both' ) ?>>Card and Account</option>
+                <option value="card" <?php selected( $method, 'card' ) ?>>Card Only</option>
+                <option value="account" <?php selected( $method, 'account' ) ?>>Account Only</option>
+              </select>
+              <p class="description">(Optional) default: Card and Account</p>
+            </td>
+          </tr>
           <!-- Modal Description -->
           <tr valign="top">
             <th scope="row">

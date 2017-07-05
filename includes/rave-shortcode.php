@@ -100,6 +100,7 @@
           'currency'  => $admin_settings->get_option_value( 'currency' ),
           'desc'      => $admin_settings->get_option_value( 'modal_desc' ),
           'logo'      => $admin_settings->get_option_value( 'modal_logo' ),
+          'method'    => $admin_settings->get_option_value( 'method' ),
           'pbkey'     => $admin_settings->get_option_value( 'public_key' ),
           'title'     => $admin_settings->get_option_value( 'modal_title' ),
         );
