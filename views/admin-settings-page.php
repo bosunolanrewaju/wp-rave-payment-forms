@@ -153,7 +153,6 @@
                 <option value="NG" <?php selected( $country, 'NG' ) ?>>NG: Nigeria</option>
                 <option value="GH" <?php selected( $country, 'GH' ) ?>>GH: Ghana</option>
                 <option value="KE" <?php selected( $country, 'KE' ) ?>>KE: Kenya</option>
-                <option value="US" <?php selected( $country, 'US' ) ?>>All (Worldwide)</option>
               </select>
               <p class="description">(Optional) default: NG</p>
             </td>
