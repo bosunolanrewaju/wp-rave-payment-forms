@@ -2,7 +2,6 @@
 
   if ( ! defined( 'ABSPATH' ) ) { exit; }
   $form_id = FLW_Rave_Pay::gen_rand_string();
-
 ?>
 
 <div>
@@ -21,6 +20,54 @@
       <input class="flw-form-input-text" id="flw-amount" type="text" placeholder="<?php _e( 'Amount', 'rave-pay' ); ?>" required /><br>
 
     <?php endif; ?>
+
+    <?php if (empty($atts['currency'])) : ?>
+      <label class="pay-now"><?php _e('Currency', 'rave-pay'); ?></label>
+      <?php if ($atts['country'] == "NG") : ?>
+        <select class="flw-form-select" id="flw-currency" required>
+          <option value="NGN">NGN</option>
+          <option value="USD">USD</option>
+          <option value="KES">KES</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+        </select>
+      <?php endif; ?>
+
+      <?php if ($atts['country'] == "KE") : ?>
+        <select class="flw-form-select" id="flw-currency" required>
+          <option value="KES">KES</option>
+        </select>
+      <?php endif; ?>
+
+      <?php if ($atts['country'] == "GH") : ?>
+        <select class="flw-form-select" id="flw-currency" required>
+          <option value="GHS">GHS</option>
+          <option value="USD">USD</option>
+        </select>
+      <?php endif; ?>
+
+      <?php if ($atts['country'] == "ZA") : ?>
+        <select class="flw-form-select" id="flw-currency" required>
+          <option value="ZAR">ZAR</option>
+        </select>
+      <?php endif; ?>
+
+      <?php if ($atts['country'] == "US") : ?>
+        <select class="flw-form-select" id="flw-currency" required>
+          <option value="NGN">NGN</option>
+          <option value="USD">USD</option>
+          <option value="KES">KES</option>
+          <option value="GHS">GHS</option>
+          <option value="EUR">EUR</option>
+          <option value="ZAR">ZAR</option>
+          <option value="GBP">GBP</option>
+        </select>
+      <?php endif; ?>
+
+
+    <?php endif; ?>
+    <br>
+
     <?php wp_nonce_field( 'flw-rave-pay-nonce', 'flw_sec_code' ); ?>
     <button value="submit" class='flw-pay-now-button' href='#'><?php _e( $btn_text, 'rave-pay' ) ?></button>
   </form>

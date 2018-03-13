@@ -21,14 +21,19 @@ if ( form ) {
  */
 var buildConfigObj = function( form ) {
   var formData = jQuery( form ).data();
-  var amount  = formData.amount || jQuery( form ).find( '#flw-amount' ).val();
-  var email   = formData.email  || jQuery( form ).find( '#flw-customer-email' ).val();
+  var amount = formData.amount || jQuery(form).find('#flw-amount').val();
+  var email = formData.email || jQuery(form).find('#flw-customer-email').val();
+  var formCurrency = formData.currency || jQuery(form).find('#flw-currency').val();
   var txref   = 'WP_' + form.id.toUpperCase() + '_' + new Date().valueOf();
+
+  if (formCurrency == '') {
+    formCurrency = flw_rave_options.currency;
+  }
 
   return {
     amount: amount,
     country: flw_rave_options.country,
-    currency: flw_rave_options.currency,
+    currency: formCurrency,
     custom_description: flw_rave_options.desc,
     custom_logo: flw_rave_options.logo,
     custom_title: flw_rave_options.title,
