@@ -3,7 +3,13 @@
   if ( ! defined( 'ABSPATH' ) ) { exit; }
   $form_id = FLW_Rave_Pay::gen_rand_string();
   if (!empty($atts['custom_currency'])) {
-    $currencies = explode(", ", $atts['custom_currency']);
+    if (preg_match('/^[a-z\d]* [a-z\d]*$/', $atts['custom_currency'])) {
+      var_dump("H");
+      die();
+      $currencies = explode(", ", $atts['custom_currency']);
+    } else{
+      $currencies = explode(",", $atts['custom_currency']);
+    }
   }
 ?>
 
