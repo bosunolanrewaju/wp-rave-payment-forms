@@ -55,11 +55,17 @@
 
         $btn_text = empty( $content ) ? $this->pay_button_text() : $content;
         $email = $this->use_current_user_email( $attr ) ? wp_get_current_user()->user_email : '';
-        $attr['logo'] = $this->get_logo_url( $attr );
+        if (!empty($this->get_logo_url($attr))) {
+          $attr['logo'] = $this->get_logo_url($attr);
+        }
+        
 
         $atts = shortcode_atts( array(
           'amount'    => '',
+          'custom_currency' => [],
           'email'     => $email,
+          'country'   => $admin_settings->get_option_value('country'),
+          'currency'  => $admin_settings->get_option_value('currency')
         ), $attr );
 
         $this->load_js_files();

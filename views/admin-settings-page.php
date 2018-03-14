@@ -117,12 +117,14 @@
             <td class="forminp forminp-text">
               <select class="regular-text code" name="flw_rave_options[currency]">
                 <?php $currency = esc_attr( $admin_settings->get_option_value( 'currency' ) ); ?>
-                <option value="NGN" <?php selected( $currency, 'NGN' ) ?>>NGN</option>
+                <option value="" <?php selected($currency, '') ?>>Any (Let Customer decide or use Shortcode)</option>
+                <option value="NGN" <?php selected($currency, 'NGN') ?>>NGN</option>
                 <option value="GHS" <?php selected( $currency, 'GHS' ) ?>>GHS</option>
                 <option value="KES" <?php selected( $currency, 'KES' ) ?>>KES</option>
                 <option value="USD" <?php selected( $currency, 'USD' ) ?>>USD</option>
                 <option value="GBP" <?php selected( $currency, 'GBP' ) ?>>GBP</option>
-                <option value="EUR" <?php selected( $currency, 'EUR' ) ?>>EUR</option>
+                <option value="EUR" <?php selected($currency, 'EUR') ?>>EUR</option>
+                <option value="ZAR" <?php selected($currency, 'ZAR') ?>>ZAR</option>
               </select>
               <p class="description">(Optional) default: NGN</p>
             </td>
@@ -137,7 +139,8 @@
                 <?php $country = esc_attr( $admin_settings->get_option_value( 'country' ) ); ?>
                 <option value="NG" <?php selected( $country, 'NG' ) ?>>NG: Nigeria</option>
                 <option value="GH" <?php selected( $country, 'GH' ) ?>>GH: Ghana</option>
-                <option value="KE" <?php selected( $country, 'KE' ) ?>>KE: Kenya</option>
+                <option value="KE" <?php selected($country, 'KE') ?>>KE: Kenya</option>
+                <option value="ZA" <?php selected($country, 'ZA') ?>>ZA: South Africa</option>
                 <option value="US" <?php selected( $country, 'US' ) ?>>All (Worldwide)</option>
               </select>
               <p class="description">(Optional) default: NG</p>
