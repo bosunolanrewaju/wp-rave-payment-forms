@@ -62,6 +62,7 @@
 
         $atts = shortcode_atts( array(
           'amount'    => '',
+          'custom_currency' => [],
           'email'     => $email,
           'country'   => $admin_settings->get_option_value('country'),
           'currency'  => $admin_settings->get_option_value('currency')

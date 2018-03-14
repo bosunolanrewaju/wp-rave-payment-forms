@@ -117,7 +117,7 @@
             <td class="forminp forminp-text">
               <select class="regular-text code" name="flw_rave_options[currency]">
                 <?php $currency = esc_attr( $admin_settings->get_option_value( 'currency' ) ); ?>
-                <option value="" <?php selected($currency, '') ?>>Any (Let customer decide)</option>
+                <option value="" <?php selected($currency, '') ?>>Any (Let Customer decide or use Shortcode)</option>
                 <option value="NGN" <?php selected($currency, 'NGN') ?>>NGN</option>
                 <option value="GHS" <?php selected( $currency, 'GHS' ) ?>>GHS</option>
                 <option value="KES" <?php selected( $currency, 'KES' ) ?>>KES</option>

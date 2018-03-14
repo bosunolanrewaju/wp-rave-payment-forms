@@ -2,6 +2,9 @@
 
   if ( ! defined( 'ABSPATH' ) ) { exit; }
   $form_id = FLW_Rave_Pay::gen_rand_string();
+  if (!empty($atts['custom_currency'])) {
+    $currencies = explode(", ", $atts['custom_currency']);
+  }
 ?>
 
 <div>
@@ -23,6 +26,17 @@
 
     <?php if (empty($atts['currency'])) : ?>
       <label class="pay-now"><?php _e('Currency', 'rave-pay'); ?></label>
+      <?php if (!empty($atts['custom_currency'])){ ?>
+
+      <select class="flw-form-select" id="flw-currency" required>
+        <?php foreach ($currencies as $currency): ?>
+          <option value="<?php echo $currency ?>"><?php echo $currency ?></option>
+        <?php endforeach; ?>
+        </select>
+
+      <?php } else{ ?>
+
+
       <?php if ($atts['country'] == "NG") : ?>
         <select class="flw-form-select" id="flw-currency" required>
           <option value="NGN">NGN</option>
@@ -64,6 +78,8 @@
         </select>
       <?php endif; ?>
 
+        <?php 
+      } ?>
 
     <?php endif; ?>
     <br>
