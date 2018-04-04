@@ -1,8 +1,10 @@
 === Rave Payment Forms ===
 Contributors: bosunolanrewaju, Flutterwave, Flamez
 Tags: rave, payment form, payment gateway, bank account, credit card, debit card, nigeria, kenya, international, mastercard, visa
+Donate link: http://flutterwave.com/
 Requires at least: 4.4
 Tested up to: 4.8
+Requires PHP: 5.4
 Stable tag: 0.0.1
 License: MIT
 License URI: https://github.com/Flutterwave/rave-payment-forms/blob/master/LICENSE
