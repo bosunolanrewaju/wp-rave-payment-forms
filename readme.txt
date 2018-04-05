@@ -11,7 +11,8 @@ License URI: https://github.com/Flutterwave/rave-payment-forms/blob/master/LICEN
 
 Accept Credit card, Debit card and Bank account payment directly on your WordPress site with the Rave payment gateway.
 Take donations and payments easily and directly on your site
-Signup for an account here
+Signup for a live rave account at https://rave.flutterwave.com and a sandbox account on https://ravesandbox.flutterwave.com
+Please see our Terms of service here: http://bit.ly/2GH9oTy
 Rave is available in:
 Nigeria
 Ghana
