@@ -13,6 +13,7 @@ Accept Credit card, Debit card and Bank account payment directly on your WordPre
 Take donations and payments easily and directly on your site
 Signup for a live rave account at https://rave.flutterwave.com and a sandbox account on https://ravesandbox.flutterwave.com
 Please see our Terms of service here: http://bit.ly/2GH9oTy
+For more information on the data we collect please view our privacy policy here: http://bit.ly/2HcQUv7
 Rave is available in:
 Nigeria
 Ghana
