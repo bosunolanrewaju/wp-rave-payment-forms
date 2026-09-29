@@ -1,0 +1,2533 @@
+# Copyright (C) 2026 Flutterwave Developers
+# This file is distributed under the MIT License.
+msgid ""
+msgstr ""
+"Project-Id-Version: Flutterwave Payments 1.0.7\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rave-payment-forms\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-24T16:09:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: rave-payment-forms\n"
+
+#. Plugin Name of the plugin
+#: rave-payment-forms.php
+#: includes/class-flw-admin-settings.php:235
+#: includes/class-flw-admin-settings.php:432
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:29
+#: client/admin/screens/Welcome.js:26
+#: client/admin/screens/Wizard.js:31
+msgid "Flutterwave Payments"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: rave-payment-forms.php
+msgid "http://flutterwave.com/"
+msgstr ""
+
+#. Description of the plugin
+#: rave-payment-forms.php
+msgid "Flutterwave payment gateway forms, accept local and international payments securely."
+msgstr ""
+
+#. Author of the plugin
+#: rave-payment-forms.php
+msgid "Flutterwave Developers"
+msgstr ""
+
+#. Author URI of the plugin
+#: rave-payment-forms.php
+msgid "https://developer.flutterwave.com/"
+msgstr ""
+
+#: blocks/payment-button/render.php:35
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:124
+#: client/blocks/edit/payment-button.js:45
+msgid "Pay {amount}"
+msgstr ""
+
+#: blocks/payment-methods/render.php:22
+msgid "Cards"
+msgstr ""
+
+#: blocks/payment-methods/render.php:23
+msgid "Bank transfer"
+msgstr ""
+
+#: blocks/payment-methods/render.php:24
+msgid "Mobile money"
+msgstr ""
+
+#: blocks/payment-methods/render.php:25
+#: build/admin.js:2
+#: client/admin/lib/constants.js:104
+msgid "Apple Pay"
+msgstr ""
+
+#: blocks/payment-methods/render.php:26
+#: build/admin.js:2
+#: client/admin/lib/constants.js:112
+msgid "Google Pay"
+msgstr ""
+
+#: blocks/payment-methods/render.php:27
+msgid "OPay"
+msgstr ""
+
+#: blocks/payment-methods/render.php:28
+#: build/admin.js:2
+#: client/admin/lib/constants.js:80
+msgid "Stablecoin"
+msgstr ""
+
+#: blocks/payment-methods/render.php:29
+#: build/admin.js:2
+#: client/admin/lib/constants.js:133
+msgid "USSD"
+msgstr ""
+
+#: blocks/payment-methods/render.php:30
+#: build/admin.js:2
+#: client/admin/lib/constants.js:134
+msgid "QR"
+msgstr ""
+
+#: blocks/payment-methods/render.php:31
+#: build/admin.js:2
+#: client/admin/lib/constants.js:135
+msgid "NQR"
+msgstr ""
+
+#: blocks/payment-methods/render.php:32
+#: build/admin.js:2
+#: client/admin/lib/constants.js:136
+msgid "Credit"
+msgstr ""
+
+#: blocks/payment-methods/render.php:33
+#: build/admin.js:2
+#: client/admin/lib/constants.js:137
+msgid "Barter"
+msgstr ""
+
+#. translators: %s: Flutterwave, in bold.
+#: blocks/payment-methods/render.php:61
+#, php-format
+msgid "Payments secured by %s"
+msgstr ""
+
+#: blocks/pricing-card/render.php:62
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:98
+msgid "Get started"
+msgstr ""
+
+#: includes/admin/class-flw-forms-controller.php:295
+msgid "(no title)"
+msgstr ""
+
+#: includes/admin/class-flw-forms-controller.php:344
+msgid "Unknown form type."
+msgstr ""
+
+#: includes/admin/class-flw-forms-controller.php:356
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:26
+msgid "Payment"
+msgstr ""
+
+#: includes/admin/class-flw-payments-controller.php:419
+#: includes/admin/class-flw-payments-controller.php:450
+msgid "Transaction not found."
+msgstr ""
+
+#: includes/admin/class-flw-payments-controller.php:426
+msgid "Flutterwave has no record of this payment yet."
+msgstr ""
+
+#: includes/admin/class-flw-payments-controller.php:482
+msgid "Sorry, you are not allowed to export transactions."
+msgstr ""
+
+#: includes/blocks/class-flw-blocks.php:98
+#: includes/integrations/class-flw-edd-gateway.php:74
+#: includes/integrations/givewp/class-flw-givewp-gateway.php:56
+msgid "Flutterwave"
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:214
+msgid "Flutterwave Payments is installed."
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:215
+msgid "Connect your Flutterwave account to start accepting payments with your forms."
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:217
+#: build/blocks.js:1
+#: client/blocks/components.js:76
+msgid "Set up Flutterwave"
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:259
+msgid "Too many payment attempts. Please wait a few minutes and try again."
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:287
+msgid "Invalid payment type."
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:393
+msgid "Unable to set up a recurring donation. Please try again."
+msgstr ""
+
+#: includes/class-flutterwave-payments.php:423
+#: includes/integrations/class-flw-hosted-checkout.php:105
+msgid "Unable to start the payment. Please try again."
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:246
+msgid "Flutterwave Payments Settings"
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:247
+#: build/blocks.js:1
+#: client/blocks/edit/payment-methods.js:17
+msgid "Settings"
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:255
+#: includes/class-flw-admin-settings.php:256
+#: build/admin.js:3
+#: build/admin.js:4
+#: client/admin/lib/tour.js:50
+#: client/admin/screens/PaymentForms.js:148
+msgid "Payment Forms"
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:264
+#: includes/class-flw-admin-settings.php:265
+#: build/admin.js:3
+#: build/admin.js:8
+#: client/admin/lib/tour.js:59
+#: client/admin/screens/Transactions.js:434
+msgid "Transactions"
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:273
+#: includes/class-flw-admin-settings.php:274
+#: includes/integrations/class-flw-thirdparty-integrations.php:162
+#: build/admin.js:3
+#: build/admin.js:18
+#: client/admin/lib/tour.js:68
+#: client/admin/screens/Integrations.js:329
+#: client/admin/screens/Integrations.js:340
+msgid "Integrations"
+msgstr ""
+
+#: includes/class-flw-admin-settings.php:433
+msgid "The settings screen has not been built. Run `npm run build:admin` in the plugin folder, or install the plugin from WordPress.org."
+msgstr ""
+
+#: includes/class-flw-form-config.php:50
+#: includes/class-flw-form-config.php:56
+msgid "This payment form is invalid or has expired. Please reload the page and try again."
+msgstr ""
+
+#: includes/class-flw-form-config.php:81
+msgid "Please enter a valid amount."
+msgstr ""
+
+#: includes/class-flw-form-config.php:87
+msgid "The selected currency is not accepted by this form."
+msgstr ""
+
+#: includes/class-flw-payment-list.php:46
+msgid "Payment List"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:47
+#: includes/class-flw-payment-list.php:257
+msgid "Payment Lists"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:64
+msgid "No payments have been made yet."
+msgstr ""
+
+#: includes/class-flw-payment-list.php:146
+msgid "Transaction Ref"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:147
+#: build/admin.js:8
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:342
+#: client/admin/screens/Transactions.js:475
+msgid "Customer"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:148
+msgid "Customer Fullname"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:149
+#: includes/shortcodes/class-abstract-flw-shortcode.php:185
+#: includes/vc-elements/class-flw-vc-simple-form.php:47
+#: views/donation-payment.php:71
+#: views/donation-payment.php:79
+#: build/admin.js:4
+#: build/admin.js:5
+#: build/admin.js:9
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:118
+#: client/admin/screens/PaymentForms.js:240
+#: client/admin/screens/Transactions.js:478
+#: client/blocks/edit/payment-button.js:28
+#: client/blocks/edit/payment-form.js:61
+msgid "Amount"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:150
+#: includes/shortcodes/class-abstract-flw-shortcode.php:192
+#: includes/shortcodes/class-abstract-flw-shortcode.php:199
+#: views/donation-payment.php:84
+#: build/admin.js:4
+#: build/admin.js:8
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:77
+#: client/admin/screens/Transactions.js:136
+#: client/blocks/components.js:124
+msgid "Currency"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:151
+#: build/admin.js:5
+#: build/admin.js:8
+#: build/admin.js:9
+#: client/admin/screens/PaymentForms.js:246
+#: client/admin/screens/Transactions.js:126
+#: client/admin/screens/Transactions.js:484
+msgid "Status"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:152
+#: build/admin.js:8
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:348
+#: client/admin/screens/Transactions.js:481
+msgid "Date"
+msgstr ""
+
+#: includes/class-flw-payment-list.php:258
+msgid "Flutterwave payment lists"
+msgstr ""
+
+#: includes/class-flw-payment-record.php:133
+msgid "Unknown payment record."
+msgstr ""
+
+#: includes/class-flw-payment-record.php:141
+msgid "Transaction does not belong to this payment record."
+msgstr ""
+
+#: includes/class-flw-payment-record.php:257
+msgid "Invalid transaction id."
+msgstr ""
+
+#: includes/class-flw-payment-record.php:272
+msgid "Invalid transaction reference."
+msgstr ""
+
+#: includes/class-flw-payment-record.php:306
+msgid "Unable to verify transaction."
+msgstr ""
+
+#: includes/class-flw-shortcodes.php:38
+msgid "Connect your Flutterwave account to show this payment form."
+msgstr ""
+
+#: includes/class-flw-shortcodes.php:47
+msgid "Add your redirect pages to show this payment form."
+msgstr ""
+
+#: includes/class-flw-shortcodes.php:67
+msgid "Finish setting up Flutterwave →"
+msgstr ""
+
+#: includes/integrations/class-flw-edd-gateway.php:108
+msgid "You will be taken to Flutterwave to pay securely by card, bank transfer or mobile money."
+msgstr ""
+
+#: includes/integrations/class-flw-edd-gateway.php:121
+msgid "Nonce verification has failed"
+msgstr ""
+
+#: includes/integrations/class-flw-edd-gateway.php:121
+msgid "Error"
+msgstr ""
+
+#: includes/integrations/class-flw-edd-gateway.php:144
+#: includes/integrations/class-flw-edd-gateway.php:171
+msgid "Payment Error"
+msgstr ""
+
+#: includes/integrations/class-flw-edd-gateway.php:144
+msgid "Flutterwave: the order could not be created before payment."
+msgstr ""
+
+#. translators: %s: order number.
+#: includes/integrations/class-flw-edd-gateway.php:162
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#. translators: %s: reason.
+#: includes/integrations/class-flw-edd-gateway.php:258
+#: includes/integrations/class-flw-givewp.php:223
+#, php-format
+msgid "Flutterwave payment not accepted: %s"
+msgstr ""
+
+#. translators: %s: Flutterwave transaction id.
+#: includes/integrations/class-flw-edd-gateway.php:264
+#: includes/integrations/class-flw-givewp.php:233
+#, php-format
+msgid "Paid with Flutterwave. Transaction ID: %s"
+msgstr ""
+
+#: includes/integrations/class-flw-hosted-checkout.php:65
+msgid "Flutterwave is not set up yet."
+msgstr ""
+
+#: includes/integrations/class-flw-hosted-checkout.php:123
+msgid "The payment reference does not match this order."
+msgstr ""
+
+#: includes/integrations/class-flw-hosted-checkout.php:127
+msgid "The payment was not successful."
+msgstr ""
+
+#: includes/integrations/class-flw-hosted-checkout.php:131
+msgid "The payment was made in a different currency."
+msgstr ""
+
+#: includes/integrations/class-flw-hosted-checkout.php:136
+msgid "The amount paid is less than the amount due."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:152
+msgid "Take Flutterwave payments at your WooCommerce checkout with the official Flutterwave WooCommerce extension."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:170
+msgid "Sell ebooks, software, music and other downloads, and let customers pay with Flutterwave at checkout."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:183
+msgid "Collect one-off donations through GiveWP forms and campaigns, paid with Flutterwave."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:192
+msgid "Add a Flutterwave payment field to contact, order and registration forms."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:193
+msgid "Charge for form submissions such as applications, bookings and orders."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:194
+msgid "Ask for payment before a Contact Form 7 submission is sent."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:195
+msgid "Sell membership levels and restrict content to paying members."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:196
+msgid "Take membership and subscription payments with Flutterwave."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:197
+msgid "Sell online courses and let students pay in their local currency."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:198
+msgid "Charge for courses and course bundles built with Tutor LMS."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:199
+msgid "Sell tickets for events managed with The Events Calendar."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:316
+msgid "This integration cannot be switched on here."
+msgstr ""
+
+#: includes/integrations/class-flw-integrations.php:323
+msgid "Install and activate the plugin first."
+msgstr ""
+
+#: includes/integrations/class-flw-thirdparty-integrations.php:161
+msgid "Flutterwave Payments Integrations"
+msgstr ""
+
+#: includes/integrations/givewp/class-flw-givewp-gateway.php:125
+msgid "Refund this donation from your Flutterwave dashboard."
+msgstr ""
+
+#: includes/integrations/givewp/class-flw-givewp-gateway.php:134
+msgid "You will be taken to Flutterwave to donate securely by card, bank transfer or mobile money."
+msgstr ""
+
+#: includes/shortcodes/class-abstract-flw-shortcode.php:178
+#: views/donation-payment.php:41
+#: views/donation-payment.php:42
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:345
+msgid "Email"
+msgstr ""
+
+#: includes/shortcodes/class-abstract-flw-shortcode.php:206
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:86
+msgid "Full name"
+msgstr ""
+
+#: includes/shortcodes/class-abstract-flw-shortcode.php:213
+msgid "Phone number"
+msgstr ""
+
+#: includes/shortcodes/class-abstract-flw-shortcode.php:220
+#: views/donation-payment.php:48
+#: views/donation-payment.php:49
+msgid "First name"
+msgstr ""
+
+#: includes/shortcodes/class-abstract-flw-shortcode.php:227
+#: views/donation-payment.php:55
+#: views/donation-payment.php:56
+msgid "Last name"
+msgstr ""
+
+#: includes/shortcodes/class-flw-shortcode-payment-form.php:300
+msgid "Total amount"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:37
+msgid "Flutterwave Simple Form"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:39
+msgid "Flutterwave Simple Pay Now Form"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:40
+msgid "Flutterwave Forms"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:50
+msgid "If left blank, user will be asked to enter the amount to complete the payment."
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:58
+msgid "Use logged-in user's email?"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:59
+msgid "Check this if you want the logged-in user's email to be used. If unchecked or user is not logged in, they will be asked to fill in their email address to complete payment."
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:63
+msgid "Yes"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:70
+msgid "Button Text"
+msgstr ""
+
+#: includes/vc-elements/class-flw-vc-simple-form.php:73
+msgid "(Optional) The text on the PAY NOW button. Default: \"PAY NOW\""
+msgstr ""
+
+#: src/API/class-handler.php:42
+msgid "This Services are Currently Unavailable.  Please contact support."
+msgstr ""
+
+#: src/API/class-handler.php:43
+msgid "You do not have the right permission to this service. please ensure your secret_key has been supplied."
+msgstr ""
+
+#: views/admin-integrations-page.php:30
+msgid "view integration"
+msgstr ""
+
+#: views/donation-payment.php:61
+msgid "Payment type"
+msgstr ""
+
+#: views/donation-payment.php:63
+msgid "Give once"
+msgstr ""
+
+#: views/donation-payment.php:64
+msgid "Give monthly"
+msgstr ""
+
+#: views/donation-payment.php:65
+msgid "Give yearly"
+msgstr ""
+
+#: views/donation-payment.php:73
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:176
+#: client/blocks/edit/donation-form.js:52
+msgid "Suggested amounts"
+msgstr ""
+
+#. translators: %s: Flutterwave, in bold.
+#: views/donation-payment.php:152
+#: views/pay-now-form.php:48
+#, php-format
+msgid "Secured by %s"
+msgstr ""
+
+#: views/donation-payment.php:161
+#: views/pay-now-form.php:58
+msgid "Taking you to Flutterwave to pay. Please don’t close this page."
+msgstr ""
+
+#. translators: 1: current step number, 2: total number of steps.
+#: build/admin.js:2
+#: client/admin/components/index.js:75
+msgid "Step"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:78
+msgid "of"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:297
+msgid "Copied"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:298
+msgid "Copy"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:330
+msgid "Hide"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:331
+msgid "Show"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:348
+msgid "Loading"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/index.js:374
+msgid "Dismiss"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:32
+msgid "Welcome to Flutterwave"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:34
+msgid "for Business"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:38
+msgid "Add payment and donation forms to any page and collect payments in over 30 currencies worldwide, with Cards, Mobile money, Bank transfer, Apple Pay, Google Pay and more."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:45
+msgid "Activate Flutterwave"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:53
+msgid "Documentation"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:55
+msgid "Explore guides and resources to help you set up your payment forms and manage your Flutterwave integration."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:65
+msgid "Read Documentation"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:74
+msgid "Support"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:76
+msgid "Contact our team for dedicated support with your integration."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Welcome.js:86
+msgid "Contact Support"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:8
+#: client/admin/screens/Wizard.js:29
+msgid "General details"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:9
+#: client/admin/screens/Wizard.js:37
+msgid "API & webhook"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:10
+#: client/admin/screens/Wizard.js:48
+#: client/admin/screens/Wizard.js:64
+msgid "Payment methods"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/lib/constants.js:11
+#: client/admin/screens/Settings.js:55
+#: client/admin/screens/Wizard.js:59
+msgid "Redirects"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:36
+msgid "Let customers choose"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:54
+msgid "Nigeria"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:55
+msgid "Ghana"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:56
+msgid "Kenya"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:57
+msgid "South Africa"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:58
+msgid "Tanzania"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:59
+msgid "Uganda"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:60
+msgid "Rwanda"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:61
+msgid "Zambia"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:62
+msgid "Worldwide"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:72
+msgid "Cards (credit/debit cards)"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:73
+msgid "Pay securely using your Visa, Mastercard, or American Express."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:81
+msgid "Pay with USDT or USDC. Fast, global, and low-fee."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:88
+msgid "Bank Transfer"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:89
+msgid "Transfer funds directly from your bank account using your bank's transfer service."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:96
+msgid "Mobile Money"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:97
+msgid "Quick and secure payment directly from your mobile wallet."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:105
+msgid "Check out in seconds using your Apple Pay wallet."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:113
+msgid "Simple and fast checkout using the cards saved to your Google Account."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:120
+msgid "Opay"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:121
+msgid "Pay directly from your OPay wallet or card."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:141
+msgid "Shown at the top of the Flutterwave payment page. Defaults to your site name."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:145
+msgid "Forms charge in this currency unless a shortcode sets its own."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:149
+msgid "Your Flutterwave public key. Use a test key (FLWPUBK_TEST-…) to try payments without real money."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/constants.js:153
+msgid "Your Flutterwave secret key, used to verify payments. It must be from the same mode as the public key."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:67
+msgid "Enter a title customers will see when they pay."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:74
+msgid "Choose the currency your forms charge in."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:81
+#: client/admin/lib/validate.js:160
+msgid "Enter a full URL, starting with https://."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:102
+msgid "Enter your public key."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:104
+msgid "Public keys start with FLWPUBK_TEST- or FLWPUBK-."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:111
+msgid "Enter your secret key."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:118
+msgid "Use a secret key from the same mode (test or live) as your public key."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:113
+msgid "Secret keys start with FLWSECK_TEST- or FLWSECK-."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/lib/validate.js:140
+msgid "Select at least one payment method."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:54
+msgid "Payment page title"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:61
+msgid "Enter your business name"
+msgstr ""
+
+#: build/admin.js:2
+#: build/blocks.js:1
+#: client/admin/screens/forms.js:73
+#: client/blocks/edit/payment-form.js:36
+#: client/blocks/edit/pricing-card.js:59
+msgid "Description"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:78
+msgid "What customers are paying for"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:90
+msgid "Logo URL"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:91
+msgid "Optional. A square image shown on the payment page."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:111
+msgid "Default currency"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:119
+msgid "Select currency"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:131
+msgid "Country"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:137
+msgid "Select country"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:147
+msgid "Pay button text"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:148
+#: client/admin/screens/forms.js:152
+#: client/blocks/edit/payment-form.js:47
+msgid "Proceed to Flutterwave"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:36
+#: client/admin/screens/forms.js:163
+msgid "Donation form"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:166
+msgid "Optional. Shown above the [flw-donation-form] shortcode."
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:133
+#: client/admin/screens/FormBuilder.js:157
+#: client/admin/screens/forms.js:174
+#: client/blocks/edit/donation-form.js:32
+#: client/blocks/edit/payment-form.js:30
+msgid "Heading"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:158
+#: client/admin/screens/forms.js:179
+msgid "Support our work"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:162
+#: client/admin/screens/forms.js:188
+#: client/blocks/edit/donation-form.js:42
+msgid "Message"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:220
+msgid "Live keys: customers will be charged real money."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:224
+msgid "Test keys: payments are simulated, no real money moves."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:233
+msgid "Public key"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:251
+msgid "Secret key"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:267
+msgid "Webhook URL"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:268
+msgid "Add this URL to the webhook settings in your Flutterwave dashboard."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:278
+msgid "Secret hash"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:279
+msgid "Copy this into the secret hash field of your Flutterwave webhook settings. Webhooks are rejected unless the two match."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:301
+msgid "Generate"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:406
+msgid "Advanced"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:418
+msgid "Additional Flutterwave payment options. These are not offered unless selected."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:450
+msgid "Style payment forms with my theme instead of Flutterwave's design"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:475
+msgid "After a successful payment"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:479
+msgid "After a failed payment"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/forms.js:483
+msgid "While a payment is still processing"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Wizard.js:22
+msgid "Please fill in your correct details to set up your payment forms"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Wizard.js:38
+msgid "Find your keys under Settings → API keys in your Flutterwave dashboard."
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:28
+#: client/admin/screens/Settings.js:38
+#: client/admin/screens/Wizard.js:42
+msgid "General"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Wizard.js:49
+msgid "Choose how customers can pay through your forms."
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:37
+#: client/admin/screens/Settings.js:47
+#: client/admin/screens/Wizard.js:53
+msgid "API & Webhook"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Wizard.js:60
+msgid "Where customers land after paying. Your home page works to start with."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Wizard.js:166
+msgid "Go back"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:125
+#: client/admin/screens/Wizard.js:131
+msgid "Could not save your settings. Please try again."
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:60
+#: client/admin/screens/Wizard.js:175
+msgid "Save"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:23
+#: client/admin/screens/Wizard.js:176
+msgid "Save & continue"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Success.js:24
+msgid "Setup successful!"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Success.js:26
+msgid "Your Flutterwave account is connected. Add a payment form to any page with this shortcode:"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Success.js:35
+msgid "Leave out amount to let customers enter their own, or use [flw-donation-form] for donations."
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Success.js:47
+msgid "Create a page"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/screens/Success.js:51
+msgid "Go to settings"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:94
+msgid "Today"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:95
+msgid "Last 7 days"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:96
+msgid "30 days"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:97
+msgid "1 year"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:112
+msgid "Date range"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:146
+msgid "From"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:157
+msgid "To"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:293
+msgid "No matches"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:7
+#: client/admin/components/list.js:304
+#: client/admin/screens/Transactions.js:35
+msgid "Successful"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:7
+#: client/admin/components/list.js:305
+#: client/admin/screens/Transactions.js:36
+msgid "Pending"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:7
+#: client/admin/components/list.js:306
+#: client/admin/screens/Transactions.js:37
+msgid "Failed"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:7
+#: client/admin/components/list.js:307
+#: client/admin/screens/Transactions.js:38
+msgid "Cancelled"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:7
+#: client/admin/components/list.js:308
+#: client/admin/screens/Transactions.js:39
+msgid "Needs review"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:309
+msgid "Published"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:310
+msgid "Draft"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:311
+msgid "Scheduled"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:312
+msgid "Private"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:313
+msgid "Synced pattern"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:349
+msgid "Pages"
+msgstr ""
+
+#: build/admin.js:2
+#: client/admin/components/list.js:357
+msgid "Previous"
+msgstr ""
+
+#: build/admin.js:2
+#: build/admin.js:4
+#: client/admin/components/list.js:365
+#: client/admin/components/tour.js:435
+msgid "Next"
+msgstr ""
+
+#. translators: 1: current page, 2: total pages.
+#: build/admin.js:3
+#: client/admin/components/list.js:370
+#, js-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/components/list.js:407
+#: client/admin/components/list.js:450
+msgid "Close"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:30
+msgid "Welcome to your Flutterwave dashboard"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:34
+msgid "You’re set up to take payments. Here’s a one-minute look at what you can do next."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:41
+msgid "Your settings"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:42
+msgid "Update your business details, API keys, payment methods and redirects here, one tab at a time."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:51
+msgid "Create payment buttons, forms, donation forms and pricing cards, and see the pages they’re on."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:60
+msgid "Every payment in one place. Filter by date, status and currency, and download a CSV."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:69
+msgid "Take Flutterwave payments in WooCommerce, Easy Digital Downloads and GiveWP."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:76
+msgid "Help is always here"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:77
+msgid "Replay a tour or turn tips off from this menu at any time."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:86
+msgid "Create a form"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:87
+msgid "Pick a payment button, form, donation form or pricing card, preview it, and we’ll put it on a new page for you."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:94
+msgid "Filter by type"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:95
+msgid "Every block and shortcode on your site is listed here, whichever way you added it."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:102
+msgid "See what each form earns"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:103
+msgid "Each row shows the page a form is on, whether it’s live, and the payments it has taken."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:112
+msgid "Find a payment"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:113
+msgid "Narrow the list by date, status or currency. The last year is shown to start with."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:120
+msgid "Download for your records"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:121
+msgid "Export any date range as a CSV file for your spreadsheet or accountant."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:128
+msgid "Open a transaction"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:129
+msgid "Click a row for the full details. You can re-check a pending payment with Flutterwave from there."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:138
+msgid "Connect your plugins"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:139
+msgid "Use Flutterwave in the store or donation plugin you already run. Install, activate or switch on each one from its card."
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:146
+msgid "More on the way"
+msgstr ""
+
+#: build/admin.js:3
+#: client/admin/lib/tour.js:147
+msgid "These are coming next. Tell us which plugin you’d like us to add from the link at the bottom of the page."
+msgstr ""
+
+#. translators: 1: step number, 2: number of steps.
+#: build/admin.js:4
+#: client/admin/components/tour.js:403
+#, js-format
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:423
+msgid "Skip tour"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:429
+#: client/admin/screens/FormBuilder.js:385
+msgid "Back"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:434
+msgid "Done"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:460
+#: client/admin/components/tour.js:466
+#: client/admin/components/tour.js:471
+msgid "Help"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:486
+msgid "Take the tour"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:489
+msgid "A quick walk through this page."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:500
+#: client/admin/components/tour.js:511
+msgid "Show tips"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:503
+msgid "Guide me the first time I open each page."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/components/tour.js:526
+msgid "Flutterwave documentation"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:46
+#: client/admin/screens/Settings.js:56
+msgid "Payment Methods"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/Settings.js:116
+msgid "Changes saved."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/app.js:52
+msgid "Could not load your Flutterwave settings."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:17
+msgid "Payment button"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:18
+msgid "Buttons"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:19
+msgid "A fixed price with a one-line checkout."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:28
+msgid "Payment form"
+msgstr ""
+
+#: build/admin.js:4
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:12
+#: client/admin/screens/form-types.js:29
+msgid "Forms"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:30
+msgid "Invoices and custom amounts."
+msgstr ""
+
+#: build/admin.js:4
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:11
+#: client/admin/screens/form-types.js:37
+msgid "Donations"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:38
+msgid "One-off or recurring gifts."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:44
+msgid "Pricing card"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:45
+#: client/admin/screens/FormBuilder.js:37
+msgid "Pricing"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:46
+msgid "A plan or product with its features."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:55
+msgid "Payment methods badge"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:56
+msgid "Badges"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/form-types.js:57
+msgid "Shows the payment methods you accept."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:34
+msgid "Buy now"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:35
+msgid "Make a payment"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:36
+msgid "Donate"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:56
+msgid "Customer enters the amount"
+msgstr ""
+
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:82
+#: client/blocks/edit/payment-button.js:38
+#: client/blocks/edit/payment-form.js:73
+#: client/blocks/edit/pricing-card.js:42
+msgid "Site default"
+msgstr ""
+
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:123
+#: client/admin/screens/FormBuilder.js:147
+#: client/blocks/components.js:161
+#: client/blocks/edit/payment-button.js:44
+#: client/blocks/edit/payment-form.js:46
+#: client/blocks/edit/pricing-card.js:97
+msgid "Button text"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:134
+msgid "Pay an invoice"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:138
+msgid "Fixed amount (optional)"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:188
+msgid "Plan name"
+msgstr ""
+
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:192
+#: client/blocks/edit/pricing-card.js:36
+msgid "Price"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:197
+msgid "Features (one per line)"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:222
+msgid "Badge (optional)"
+msgstr ""
+
+#: build/admin.js:4
+#: build/blocks.js:1
+#: client/admin/screens/FormBuilder.js:223
+#: client/blocks/edit/pricing-card.js:90
+msgid "Popular"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:270
+msgid "Preview unavailable."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:334
+msgid "New payment form"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:338
+msgid "What would you like to add to your site?"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:326
+msgid "Could not create the page."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:392
+msgid "Create page"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:401
+msgid "Page title"
+msgstr ""
+
+#: build/admin.js:4
+#: build/admin.js:5
+#: client/admin/screens/FormBuilder.js:418
+#: client/admin/screens/PaymentForms.js:300
+msgid "Shortcode"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:421
+msgid "Or paste this into any page, post or widget."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:425
+msgid "Pricing cards are available as a block only."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/FormBuilder.js:441
+msgid "Preview"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/PaymentForms.js:18
+msgid "All forms"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/PaymentForms.js:45
+msgid "Customer enters"
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/PaymentForms.js:115
+msgid "Could not load your payment forms."
+msgstr ""
+
+#: build/admin.js:4
+#: client/admin/screens/PaymentForms.js:140
+msgid "New form"
+msgstr ""
+
+#. translators: %d: number of payment forms.
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:180
+#, js-format
+msgid "%d Payment form"
+msgid_plural "%d Payment forms"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:193
+msgid "View transactions"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:216
+msgid "Create your first payment form"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:222
+msgid "Payment buttons, forms, donation forms and pricing cards you add to your pages will be listed here with the payments they collect."
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:237
+msgid "Form"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:243
+msgid "Used on"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:249
+msgid "Payments"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:253
+msgid "Actions"
+msgstr ""
+
+#: build/admin.js:5
+#: client/admin/screens/PaymentForms.js:296
+msgid "Block"
+msgstr ""
+
+#. translators: %s: date the page was last changed.
+#: build/admin.js:6
+#: client/admin/screens/PaymentForms.js:316
+#, js-format
+msgid "Updated %s"
+msgstr ""
+
+#. translators: %d: number of successful payments.
+#: build/admin.js:7
+#: client/admin/screens/PaymentForms.js:77
+#, js-format
+msgid "%d payment"
+msgid_plural "%d payments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin.js:7
+#: client/admin/screens/PaymentForms.js:340
+msgid "Edit"
+msgstr ""
+
+#: build/admin.js:7
+#: client/admin/screens/PaymentForms.js:353
+msgid "View"
+msgstr ""
+
+#: build/admin.js:7
+#: client/admin/screens/PaymentForms.js:369
+msgid "No forms of this type yet."
+msgstr ""
+
+#: build/admin.js:7
+#: client/admin/screens/PaymentForms.js:380
+msgid "Payments are counted per page for payments made since this version of the plugin. Shortcodes and blocks both appear here."
+msgstr ""
+
+#: build/admin.js:7
+#: client/admin/screens/Transactions.js:85
+msgid "Filter transactions"
+msgstr ""
+
+#. translators: %d: number of filters in effect.
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:95
+#, js-format
+msgid "Filter applied: %d"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:108
+#: client/admin/screens/Transactions.js:218
+msgid "Custom date range"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:118
+msgid "Date range cannot exceed the last 1 year"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:127
+msgid "Select items"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:137
+msgid "Enter or select items"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:156
+msgid "Clear"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:167
+msgid "Apply filter"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:199
+msgid "Download transactions"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:207
+msgid "Custom Download"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:226
+msgid "Downloads a CSV file you can open in any spreadsheet."
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:234
+msgid "Cancel"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:237
+msgid "Download"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:265
+msgid "Status updated from Flutterwave."
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:275
+msgid "Transaction deleted."
+msgstr ""
+
+#: build/admin.js:8
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:256
+#: client/admin/screens/Transactions.js:282
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:294
+msgid "Transaction details"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:304
+msgid "Re-verify with Flutterwave"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:319
+msgid "Delete this transaction record? This cannot be undone."
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:329
+msgid "Delete record"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:339
+msgid "Reference"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:352
+msgid "Status detail"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:357
+msgid "Flutterwave ID"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:361
+msgid "Paid on"
+msgstr ""
+
+#: build/admin.js:8
+#: client/admin/screens/Transactions.js:407
+msgid "Could not load transactions."
+msgstr ""
+
+#. translators: %d: number of transactions.
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:446
+#, js-format
+msgid "%d Transaction"
+msgid_plural "%d Transactions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:506
+msgid "Unknown customer"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:546
+msgid "No transactions found"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:553
+msgid "No payments match these filters."
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:557
+msgid "Payments made through your forms in this period will show up here."
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/screens/Transactions.js:567
+msgid "Clear filters"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:9
+msgid "E-commerce"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:10
+msgid "Digital products"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:13
+msgid "Memberships"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:14
+msgid "Courses"
+msgstr ""
+
+#: build/admin.js:9
+#: client/admin/lib/integrations.js:15
+msgid "Events"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:10
+#: client/admin/lib/integrations.js:39
+#, js-format
+msgid "Activate %s"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:11
+#: client/admin/lib/integrations.js:47
+#, js-format
+msgid "Ask an administrator to activate %s."
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:12
+#: client/admin/lib/integrations.js:62
+#, js-format
+msgid "Install %s"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:70
+#, js-format
+msgid "%s is not installed."
+msgstr ""
+
+#: build/admin.js:13
+#: build/admin.js:19
+#: client/admin/lib/integrations.js:88
+#: client/admin/lib/integrations.js:126
+#: client/admin/screens/Integrations.js:412
+msgid "Coming soon"
+msgstr ""
+
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:113
+msgid "Manage"
+msgstr ""
+
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:109
+msgid "Enable"
+msgstr ""
+
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:131
+msgid "Active"
+msgstr ""
+
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:137
+msgid "Not installed"
+msgstr ""
+
+#: build/admin.js:13
+#: client/admin/lib/integrations.js:143
+msgid "Ready to connect"
+msgstr ""
+
+#. translators: %s: extension name.
+#: build/admin.js:14
+#: client/admin/screens/Integrations.js:117
+#, js-format
+msgid "Uses the free %s extension."
+msgstr ""
+
+#. translators: 1: currency code, 2: plugin name.
+#: build/admin.js:15
+#: client/admin/screens/Integrations.js:130
+#, js-format
+msgid "%1$s, the currency set in %2$s, is not supported by Flutterwave."
+msgstr ""
+
+#: build/admin.js:15
+#: client/admin/screens/Integrations.js:175
+msgid "Gateway settings"
+msgstr ""
+
+#: build/admin.js:15
+#: client/admin/screens/Integrations.js:179
+msgid "Manage settings"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:191
+#, js-format
+msgid "Flutterwave for %s"
+msgstr ""
+
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:211
+msgid "All"
+msgstr ""
+
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:232
+msgid "Could not load integrations."
+msgstr ""
+
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:274
+msgid "Plugin installed and activated."
+msgstr ""
+
+#: build/admin.js:16
+#: client/admin/screens/Integrations.js:275
+msgid "Plugin activated."
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:17
+#: client/admin/screens/Integrations.js:285
+#, js-format
+msgid "Flutterwave is now a payment option in %s."
+msgstr ""
+
+#. translators: %s: plugin name.
+#: build/admin.js:18
+#: client/admin/screens/Integrations.js:293
+#, js-format
+msgid "Flutterwave is no longer offered in %s."
+msgstr ""
+
+#: build/admin.js:18
+#: client/admin/screens/Integrations.js:343
+msgid "Take Flutterwave payments inside the plugins you already use to sell products, collect donations and run memberships."
+msgstr ""
+
+#. translators: %d: number of connected integrations.
+#: build/admin.js:19
+#: client/admin/screens/Integrations.js:353
+#, js-format
+msgid "%d connected"
+msgstr ""
+
+#: build/admin.js:19
+#: client/admin/screens/Integrations.js:363
+msgid "Category"
+msgstr ""
+
+#: build/admin.js:19
+#: client/admin/screens/Integrations.js:395
+msgid "Available"
+msgstr ""
+
+#: build/admin.js:19
+#: client/admin/screens/Integrations.js:421
+msgid "Using another plugin to sell or take donations?"
+msgstr ""
+
+#: build/admin.js:19
+#: client/admin/screens/Integrations.js:430
+msgid "Tell us which one"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/components.js:70
+msgid "Connect your Flutterwave account before publishing: visitors will not see this block until you do."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/components.js:149
+msgid "Flutterwave colours"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/components.js:155
+msgid "Button & accent"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/components.js:165
+msgid "Corners"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/components.js:169
+msgid "Corner radius"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:29
+#: client/blocks/edit/payment-form.js:64
+msgid "Leave empty to let customers enter the amount."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:46
+msgid "{amount} is replaced with the price, e.g. \"Pay NGN 5,000\"."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:56
+msgid "Checkout"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:59
+msgid "Ask for the customer’s name"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:70
+msgid "Use the logged-in user’s email"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:74
+msgid "Logged-in visitors only see the button."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:86
+msgid "Width"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:91
+msgid "Fit content"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:95
+msgid "Full width"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-button.js:102
+#: client/blocks/edit/payment-form.js:117
+msgid "Show “Secured by Flutterwave”"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:28
+#: client/blocks/edit/payment-form.js:26
+msgid "Content"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:51
+msgid "Use {amount} to show the price."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:63
+msgid "Fixed amount"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:77
+msgid "Fields"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:81
+msgid "Customer name"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:90
+msgid "First and last name"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:97
+msgid "Don’t ask"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-form.js:106
+msgid "Ask for a phone number"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:33
+msgid "Leave empty to use the heading from Flutterwave settings."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:48
+msgid "Donation"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:58
+msgid "Shown as"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:59
+msgid "Comma separated, e.g. 1000, 5000, 10000. Up to six."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:69
+msgid "Let donors choose"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/donation-form.js:79
+msgid "Offer monthly and yearly giving"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:27
+msgid "Plan"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:31
+msgid "Name"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:48
+msgid "Price note"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:49
+msgid "one-off"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:50
+msgid "Shown next to the price. Customers pay once."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:68
+msgid "Features"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:69
+msgid "One per line."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:77
+msgid "Highlight"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:80
+msgid "Highlight this plan"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/pricing-card.js:89
+msgid "Badge"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-methods.js:21
+msgid "Label"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-methods.js:27
+msgid "Show “Payments secured by Flutterwave”"
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-methods.js:37
+msgid "The methods shown are the ones enabled in your Flutterwave settings, so this badge stays in step with checkout."
+msgstr ""
+
+#: build/blocks.js:1
+#: client/blocks/edit/payment-methods.js:43
+msgid "Change payment methods"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block title"
+msgid "Flutterwave Donation Form"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block description"
+msgid "Collect one-off or recurring donations, with suggested amounts."
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block keyword"
+msgid "donate"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block keyword"
+msgid "donation"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block keyword"
+msgid "charity"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block keyword"
+msgid "give"
+msgstr ""
+
+#: blocks/donation-form/block.json
+msgctxt "block keyword"
+msgid "recurring"
+msgstr ""
+
+#: blocks/donation-form/block.json
+#: blocks/payment-button/block.json
+#: blocks/payment-form/block.json
+#: blocks/payment-methods/block.json
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "flutterwave"
+msgstr ""
+
+#: blocks/payment-button/block.json
+msgctxt "block title"
+msgid "Flutterwave Payment Button"
+msgstr ""
+
+#: blocks/payment-button/block.json
+msgctxt "block description"
+msgid "A one-line checkout for a fixed amount: an email field and a pay button."
+msgstr ""
+
+#: blocks/payment-button/block.json
+#: blocks/payment-form/block.json
+msgctxt "block keyword"
+msgid "pay"
+msgstr ""
+
+#: blocks/payment-button/block.json
+msgctxt "block keyword"
+msgid "button"
+msgstr ""
+
+#: blocks/payment-button/block.json
+#: blocks/payment-form/block.json
+msgctxt "block keyword"
+msgid "checkout"
+msgstr ""
+
+#: blocks/payment-button/block.json
+msgctxt "block keyword"
+msgid "buy"
+msgstr ""
+
+#: blocks/payment-form/block.json
+msgctxt "block title"
+msgid "Flutterwave Payment Form"
+msgstr ""
+
+#: blocks/payment-form/block.json
+msgctxt "block description"
+msgid "A full payment form with a fixed or customer-entered amount."
+msgstr ""
+
+#: blocks/payment-form/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: blocks/payment-form/block.json
+msgctxt "block keyword"
+msgid "invoice"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block title"
+msgid "Flutterwave Payment Methods"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block description"
+msgid "Shows the payment methods your forms accept, taken from your Flutterwave settings."
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block keyword"
+msgid "accepted"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block keyword"
+msgid "cards"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block keyword"
+msgid "badge"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block keyword"
+msgid "trust"
+msgstr ""
+
+#: blocks/payment-methods/block.json
+msgctxt "block keyword"
+msgid "secure"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block title"
+msgid "Flutterwave Pricing Card"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block description"
+msgid "A plan or product card with a price, features and checkout."
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "price"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "plan"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "product"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "pricing"
+msgstr ""
+
+#: blocks/pricing-card/block.json
+msgctxt "block keyword"
+msgid "tier"
+msgstr ""

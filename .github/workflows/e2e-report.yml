@@ -1,0 +1,71 @@
+name: E2E report
+
+# A weekly end-to-end run with a report, so breakage from new WordPress or
+# browser releases shows up even in weeks without commits.
+on:
+    schedule:
+        # Fridays at 12:00 UTC. GitHub schedules always run in UTC: for 12:00
+        # West Africa Time (UTC+1) use '0 11 * * 5'. Schedules only run on the
+        # default branch.
+        - cron: '0 12 * * 5'
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: e2e-report
+    cancel-in-progress: false
+
+jobs:
+    e2e-report:
+        name: End-to-end report
+        runs-on: ubuntu-latest
+        timeout-minutes: 45
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: '7.4'
+                  coverage: none
+            - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+              with:
+                  composer-options: '--no-dev'
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            - run: npm run build:admin
+            - run: npm run test:e2e:install
+            - run: npm run env:start
+
+            # Keep going when tests fail so the report is still published.
+            - name: Run end-to-end tests
+              id: e2e
+              continue-on-error: true
+              run: npm run test:e2e
+
+            - name: Upload report
+              id: report
+              if: always()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              with:
+                  name: e2e-report-${{ github.run_number }}
+                  path: |
+                      playwright-report
+                      test-reports
+                      test-results
+                  retention-days: 30
+                  if-no-files-found: warn
+
+            - name: Write the job summary
+              if: always()
+              run: node tests/e2e/report/summary.js test-reports/e2e-results.json "${{ steps.report.outputs.artifact-url }}" >> "$GITHUB_STEP_SUMMARY"
+
+            # Mark the run red after the report is out, so failures still notify.
+            - name: Fail when tests failed
+              if: steps.e2e.outcome == 'failure'
+              run: |
+                  echo "::error::End-to-end tests failed. See the job summary and the e2e-report-${{ github.run_number }} artifact."
+                  exit 1

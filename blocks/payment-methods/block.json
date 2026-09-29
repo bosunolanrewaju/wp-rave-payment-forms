@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flutterwave/payment-methods",
+	"title": "Flutterwave Payment Methods",
+	"category": "flutterwave",
+	"description": "Shows the payment methods your forms accept, taken from your Flutterwave settings.",
+	"keywords": [
+		"accepted",
+		"cards",
+		"badge",
+		"trust",
+		"secure",
+		"flutterwave"
+	],
+	"textdomain": "rave-payment-forms",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "We accept"
+		},
+		"showSecured": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "flw-blocks-editor",
+	"editorStyle": [
+		"flw_css",
+		"flw-blocks-editor-style"
+	],
+	"render": "file:./render.php"
+}

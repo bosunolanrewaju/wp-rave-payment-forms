@@ -1,37 +1,32 @@
 <?php
-  /*
-  Plugin Name: Rave Payment Forms
-  Plugin URI: http://flutterwave.com/
-  Description: Rave payment gateway forms.
-  Version: 0.0.1
-  Author: Bosun Olanrewaju
-  Author URI: http://twitter.com/bosunolanrewaju
-    Copyright: © 2016 Bosun Olanrewaju.
-    License: MIT License
-  */
+/**
+ * Plugin Name: Flutterwave Payments
+ * Plugin URI: http://flutterwave.com/
+ * Description: Flutterwave payment gateway forms, accept local and international payments securely.
+ * Version: 1.0.7
+ * Requires at least: 5.2
+ * Requires PHP: 7.4
+ * Author: Flutterwave Developers
+ * Author URI: https://developer.flutterwave.com/
+ * Copyright: Â© 2023 Flutterwave Technology Solutions
+ * License: MIT License
+ * Text Domain: rave-payment-forms
+ * Domain Path: i18n/languages
+ * Requires at least:      5.6
+ * Requires PHP:           7.4
+ *
+ * @package Flutterwave Payments
+ **/
 
-  if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-  }
+declare(strict_types=1);
 
-  if ( ! defined( 'FLW_PAY_PLUGIN_FILE' ) ) {
-    define( 'FLW_PAY_PLUGIN_FILE', __FILE__ );
-  }
+defined( 'ABSPATH' ) || exit;
 
-  // Plugin folder path
-  if ( ! defined( 'FLW_DIR_PATH' ) ) {
-    define( 'FLW_DIR_PATH', plugin_dir_path( __FILE__ ) );
-  }
+if ( ! defined( 'FLW_PAY_PLUGIN_FILE' ) ) {
+	define( 'FLW_PAY_PLUGIN_FILE', __FILE__ );
+}
 
-  //Plugin folder path
-  if ( ! defined( 'FLW_DIR_URL' ) ) {
-    define( 'FLW_DIR_URL', plugin_dir_url( __FILE__ ) );
-  }
-
-  require_once( FLW_DIR_PATH . 'includes/rave-base-class.php' );
-
-  global $flw_pay_class;
-
-  $flw_pay_class = FLW_Rave_Pay::get_instance();
-
-?>
+if ( ! class_exists( 'Flutterwave_Payments' ) ) {
+	require_once dirname( FLW_PAY_PLUGIN_FILE ) . '/includes/class-flutterwave-payments.php';
+	$flw_pay_class = Flutterwave_Payments::get_instance();
+}

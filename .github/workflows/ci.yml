@@ -1,0 +1,151 @@
+name: CI
+
+on:
+    push:
+        branches: ['master', 'dev']
+    pull_request:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: '8.3'
+                  coverage: none
+                  tools: cs2pr
+            - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            - name: PHP coding standards
+              run: vendor/bin/phpcs -q --report=checkstyle | cs2pr
+            - name: JavaScript
+              run: npm run lint:js
+            - name: CSS
+              run: npm run lint:css
+            - name: package.json
+              run: npm run lint:pkg-json
+            - name: JavaScript unit tests
+              run: npm run test:js
+            - name: Build admin app
+              run: npm run build:admin
+
+    audit:
+        name: Dependency audit
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: '8.3'
+                  coverage: none
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+            - name: npm audit
+              run: npm audit --audit-level=moderate
+            - name: composer audit
+              run: composer audit --locked
+
+    unit:
+        name: Unit (PHP ${{ matrix.php }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php: ['7.4', '8.1', '8.3', '8.4', '8.5']
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: ${{ matrix.php == '8.3' && 'xdebug' || 'none' }}
+            - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+            - name: Run unit tests
+              if: matrix.php != '8.3'
+              run: vendor/bin/phpunit --testsuite unit
+            - name: Run unit tests with coverage
+              if: matrix.php == '8.3'
+              run: vendor/bin/phpunit --testsuite unit --coverage-text
+
+    integration:
+        name: Integration (WP ${{ matrix.wp }}, PHP ${{ matrix.php }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - wp: latest
+                      php: '8.3'
+                    - wp: latest
+                      php: '7.4'
+                    - wp: '6.4'
+                      php: '8.1'
+        env:
+            WP_ENV_PHP_VERSION: ${{ matrix.php }}
+            WP_ENV_CORE: ${{ matrix.wp == 'latest' && '' || format('WordPress/WordPress#{0}-branch', matrix.wp) }}
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: '7.4'
+                  coverage: none
+            - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            # build/ is not committed; without it the admin app tests are skipped.
+            - run: npm run build:admin
+            - run: npm run env:start
+            - run: npm run test:integration
+
+    e2e:
+        name: End-to-end
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+              with:
+                  php-version: '7.4'
+                  coverage: none
+            - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+              with:
+                  composer-options: '--no-dev'
+            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            # build/ is not committed; the admin screens and blocks need it.
+            - run: npm run build:admin
+            - run: npm run test:e2e:install
+            - run: npm run env:start
+            - run: npm run test:e2e
+            - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              id: report
+              if: always()
+              with:
+                  name: playwright-report
+                  path: |
+                      playwright-report
+                      test-reports
+                      test-results
+                  retention-days: 7
+                  if-no-files-found: warn
+            - name: Summary
+              if: always()
+              run: node tests/e2e/report/summary.js test-reports/e2e-results.json "${{ steps.report.outputs.artifact-url }}" >> "$GITHUB_STEP_SUMMARY"

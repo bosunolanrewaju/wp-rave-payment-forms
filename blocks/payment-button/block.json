@@ -1,0 +1,84 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flutterwave/payment-button",
+	"title": "Flutterwave Payment Button",
+	"category": "flutterwave",
+	"description": "A one-line checkout for a fixed amount: an email field and a pay button.",
+	"keywords": [
+		"pay",
+		"button",
+		"checkout",
+		"buy",
+		"flutterwave"
+	],
+	"textdomain": "rave-payment-forms",
+	"attributes": {
+		"amount": {
+			"type": "number",
+			"default": 5000
+		},
+		"currency": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"collectName": {
+			"type": "boolean",
+			"default": false
+		},
+		"useUserEmail": {
+			"type": "boolean",
+			"default": true
+		},
+		"width": {
+			"type": "string",
+			"enum": [
+				"auto",
+				"full"
+			],
+			"default": "auto"
+		},
+		"showSecured": {
+			"type": "boolean",
+			"default": true
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"amount": 5000,
+			"currency": "NGN"
+		}
+	},
+	"editorScript": "flw-blocks-editor",
+	"editorStyle": [
+		"flw_css",
+		"flw-blocks-editor-style"
+	],
+	"render": "file:./render.php"
+}

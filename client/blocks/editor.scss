@@ -1,0 +1,21 @@
+/**
+ * Editor-only styles for the Flutterwave blocks. The blocks themselves use
+ * assets/css/flw.css, loaded in the editor through each block's editorStyle.
+ */
+
+.flw-block-loading {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	min-height: 120px;
+}
+
+.flw-block-setup {
+	padding: 0 16px 16px;
+}
+
+.flw-block-help {
+	color: #757575;
+	font-size: 12px;
+	margin-top: 12px;
+}

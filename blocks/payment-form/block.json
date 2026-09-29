@@ -1,0 +1,89 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flutterwave/payment-form",
+	"title": "Flutterwave Payment Form",
+	"category": "flutterwave",
+	"description": "A full payment form with a fixed or customer-entered amount.",
+	"keywords": [
+		"pay",
+		"form",
+		"checkout",
+		"invoice",
+		"flutterwave"
+	],
+	"textdomain": "rave-payment-forms",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"amount": {
+			"type": "number",
+			"default": 0
+		},
+		"currency": {
+			"type": "string",
+			"default": ""
+		},
+		"collectName": {
+			"type": "string",
+			"enum": [
+				"full",
+				"split",
+				"none"
+			],
+			"default": "full"
+		},
+		"collectPhone": {
+			"type": "boolean",
+			"default": true
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"showSecured": {
+			"type": "boolean",
+			"default": true
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"heading": "Pay an invoice",
+			"amount": 0
+		}
+	},
+	"editorScript": "flw-blocks-editor",
+	"editorStyle": [
+		"flw_css",
+		"flw-blocks-editor-style"
+	],
+	"render": "file:./render.php"
+}

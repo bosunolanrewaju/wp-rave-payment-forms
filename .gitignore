@@ -1,0 +1,27 @@
+vendor
+.idea
+node_modules
+*.zip
+*.tar.gz
+*.DS_Store
+docs/.vitepress/dist
+docs/.vitepress/cache
+rave-payment-forms.zip
+.env
+.env.e2e
+.phpunit.result.cache
+.DS_Store
+*/.DS_Store
+phpcs-report.xml
+build/
+.docker/bin
+.docker/logs
+.docker/data
+.docker/wordpress
+# Tests
+/.phpunit.cache
+/coverage
+/playwright-report
+/test-results
+/tests/e2e/.state
+/test-reports

@@ -1,0 +1,89 @@
+{
+	"name": "flutterwavedev/wordpress",
+	"description": "WordPress plugin for Flutterwave for Business (F4B) v3 APIs",
+	"type": "wordpress-plugin",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Flutterwave\\WordPress\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "Flutterwave Developers",
+			"email": "developers@flutterwavego.com"
+		}
+	],
+	"require-dev": {
+		"brain/monkey": "^2.7",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+		"phpcompatibility/phpcompatibility-wp": "^2.1.8",
+		"phpunit/phpunit": "^9.6.33",
+		"squizlabs/php_codesniffer": "^3.13.6",
+		"wp-coding-standards/wpcs": "^3.4.1",
+		"yoast/phpunit-polyfills": "^2.0.5"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "7.4.33"
+		},
+		"sort-packages": true
+	},
+	"scripts": {
+		"test": [
+			"@test:unit",
+			"@test:integration"
+		],
+		"standards:check": [
+			"phpcs"
+		],
+		"standards:fix": [
+			"phpcbf"
+		],
+		"phpcompatibility:check": [
+			"phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 7.4- --extensions=php --ignore=*/vendor/*,*/tests/*,*/data/*,*/assets/*,*/.docker/*,*/build/*.asset.php,*/node_modules/* ."
+		],
+		"makepot-audit": [
+			"wp --allow-root i18n make-pot . --exclude=\".github,.wordpress-org,bin,node_modules,tests,docs\" --slug=rave-payment-forms --debug"
+		],
+		"makepot": [
+			"@makepot-audit --skip-audit"
+		],
+		"test:unit": [
+			"phpunit --testsuite unit"
+		],
+		"test:integration": [
+			"phpunit -c phpunit-integration.xml.dist"
+		],
+		"test:coverage": [
+			"XDEBUG_MODE=coverage phpunit --testsuite unit --coverage-html=coverage --coverage-text"
+		]
+	},
+	"extra": {
+		"scripts-description": {
+			"standards:check": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+			"standards:fix": "Fix coding standards warnings/errors automatically with PHP Code Beautifier",
+			"makepot-audit": "Generate i18n/languages/rave-payment-forms.pot file and run audit",
+			"makepot": "Generate i18n/languages/rave-payment-forms.pot file",
+			"test": "Run unit and integration tests",
+			"test:unit": "Run fast unit tests (no WordPress needed)",
+			"test:integration": "Run integration tests against the WordPress test suite (see wp-env)",
+			"phpcompatibility:check": "Check PHP 7.4+ compatibility"
+		}
+	},
+	"require": {
+		"php": ">=7.4",
+		"ext-json": "*",
+		"ext-openssl": "*"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Flutterwave\\WordPress\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true
+}

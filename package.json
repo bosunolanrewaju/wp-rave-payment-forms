@@ -1,0 +1,115 @@
+{
+	"name": "rave-payment-forms",
+	"version": "1.0.7",
+	"description": "Official Flutterwave Payment Plugin for WordPress",
+	"author": "Flutterwave Developers",
+	"license": "MIT",
+	"keywords": [
+		"fintech",
+		"payment",
+		"ecommerce",
+		"buy",
+		"sell",
+		"money",
+		"international",
+		"payment",
+		"payment",
+		"acquirer"
+	],
+	"homepage": "https://github.com/Flutterwave/WordPress-v2#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Flutterwave/WordPress-v2.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Flutterwave/WordPress-v2/issues"
+	},
+	"engines": {
+		"node": ">=24.18.0",
+		"npm": ">=11.0.0"
+	},
+	"files": [
+		"src",
+		"assets",
+		"i18n",
+		"views",
+		"blocks",
+		"build",
+		"includes",
+		"!src/Integrations",
+		"!includes/integrations/class-flw-thirdparty-integrations.php",
+		"!views/admin-integrations-page.php",
+		"!assets/css/admin",
+		"!assets/js/admin",
+		"rave-payment-forms.php",
+		"README.md",
+		"LICENSE",
+		"CHANGELOG.md",
+		"changelog.txt",
+		"readme.txt"
+	],
+	"devDependencies": {
+		"@playwright/test": "^1.63.0",
+		"@wordpress/api-fetch": "^7.56.0",
+		"@wordpress/element": "^8.8.0",
+		"@wordpress/env": "^11.16.0",
+		"@wordpress/eslint-plugin": "^27.0.0",
+		"@wordpress/i18n": "^6.29.0",
+		"@wordpress/prettier-config": "^4.56.0",
+		"@wordpress/scripts": "^36.0.0",
+		"globals": "^17.12.0",
+		"uglify-js": "^3.19.3",
+		"vite": "^8.3.0",
+		"vitest": "^5.0.1"
+	},
+	"scripts": {
+		"postinstall": "composer install",
+		"build": "npm run uglify && npm run build:admin && composer run makepot && npm run plugin-zip",
+		"build:admin": "wp-scripts build",
+		"start": "wp-scripts start",
+		"preuglify": "rm -f $npm_package_config_assets_js_min",
+		"uglify": "for f in $npm_package_config_assets_js_js; do file=${f%.js}; uglifyjs $f -c -m > $file.min.js; done",
+		"format": "wp-scripts format",
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:pkg-json && npm run lint:php",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style \"assets/css/**/*.{css,scss}\" \"client/**/*.scss\"",
+		"lint:php": "composer run standards:check",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"audit": "npm audit --audit-level=high && composer audit",
+		"env": "wp-env",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:clean": "wp-env clean all",
+		"test": "npm run test:js && npm run test:php && npm run test:e2e",
+		"test:js": "wp-scripts test-unit-js client tests/e2e/report",
+		"test:php": "npm run test:unit && npm run test:integration",
+		"test:unit": "composer run test:unit",
+		"test:integration": "wp-env run tests-cli --env-cwd=wp-content/plugins/rave-payment-forms vendor/bin/phpunit -c phpunit-integration.xml.dist",
+		"pretest:e2e": "npm run build:admin",
+		"test:e2e": "playwright test",
+		"test:e2e:headed": "playwright test --headed",
+		"test:e2e:install": "playwright install --with-deps chromium"
+	},
+	"config": {
+		"wp_org_slug": "rave-payment-forms",
+		"assets": {
+			"js": {
+				"min": "assets/js/*.min.js",
+				"js": "assets/js/*.js"
+			},
+			"styles": {
+				"css": "assets/css/*.css",
+				"sass": "assets/css/*.scss",
+				"cssfolder": "assets/css/"
+			}
+		}
+	},
+	"overrides": {
+		"ajv@>=7.0.0-alpha.0 <8.18.0": "^8.20.0",
+		"qs": "^6.16.0",
+		"serialize-javascript": "^7.1.1",
+		"uuid@<11.1.1": "^11.1.1",
+		"ws@>=8.0.0 <8.21.0": "^8.21.3"
+	}
+}

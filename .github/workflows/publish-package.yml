@@ -1,0 +1,42 @@
+name: Publish to WordPress.org
+on:
+    release:
+        types: [released]
+permissions:
+    contents: read
+
+jobs:
+    tag:
+        name: New Release
+        runs-on: ubuntu-latest
+        env:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        steps:
+            - uses: act10ns/slack@d96404edccc6d6467fc7f8134a420c851b1e9054 # v2
+              with:
+                  status: starting
+              if: ${{ always() }}
+            - name: Checkout code
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - name: Setup Node.js environment
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - name: Build Plugin
+              uses: ./.github/actions/make-build
+            - name: WordPress Plugin Deploy
+              id: deploy
+              uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # stable
+              env:
+                  SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+                  SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+                  SLUG: rave-payment-forms
+            - name: push build status to Slack
+              uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # v3
+              with:
+                  status: ${{ job.status }}
+                  fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+              env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+              if: always()

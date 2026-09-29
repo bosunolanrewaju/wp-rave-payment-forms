@@ -1,0 +1,2297 @@
+/**
+ * Flutterwave admin styles.
+ *
+ * Scoped under .flw-admin-root so nothing leaks into the rest of wp-admin, and
+ * the WordPress page wrapper padding is neutralised so the screen sits flush
+ * against the admin chrome the way the designs show it. The webfonts come from
+ * assets/css/flw-fonts.css, which the payment forms share.
+ */
+
+$flw-orange: #ff9b00;
+$flw-orange-soft: #fdc46b;
+$flw-orange-ink: #7a4a00;
+$flw-ink: #101828;
+$flw-body: #475467;
+$flw-muted: #98a2b3;
+$flw-border: #d0d5dd;
+$flw-line: #eaecf0;
+$flw-surface: #fff;
+$flw-radius: 8px;
+$flw-container: 1560px;
+$flw-gutter: 48px;
+$flw-serif: "Millik", "Iowan Old Style", "Palatino Linotype", palatino, georgia, serif;
+$flw-sans: "Moderat", "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+
+/* Neutralise the wp-admin content padding for our full-bleed page. */
+#wpcontent:has(.flw-admin-root) {
+	padding-left: 0;
+}
+
+.flw-admin-root {
+	background: $flw-surface;
+	color: $flw-ink;
+	font-family: $flw-sans;
+	font-size: 14px;
+	line-height: 1.5;
+	min-height: calc(100vh - 32px);
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	a {
+		color: $flw-orange;
+		font-weight: 500;
+		text-decoration: underline;
+
+		&:hover,
+		&:focus {
+			color: #d68300;
+		}
+	}
+
+	h1,
+	h2 {
+		font-family: $flw-serif;
+		font-weight: 400;
+		margin: 0;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Page shell                                                                 */
+
+/* -------------------------------------------------------------------------- */
+
+/* The screen is centred in a container rather than hugging the admin sidebar,
+   and the two columns follow the ~1.4:1 form-to-stepper ratio from the designs
+   instead of two fixed widths. */
+.flw-page {
+
+	&__crumb {
+		border-bottom: 1px solid $flw-line;
+	}
+
+	&__crumb-inner {
+		align-items: center;
+		display: flex;
+		margin: 0 auto;
+		max-width: $flw-container;
+		min-height: 56px;
+		padding: 0 $flw-gutter;
+		width: 100%;
+	}
+
+	&__body {
+		display: block;
+		margin: 0 auto;
+		max-width: $flw-container;
+		padding: 40px $flw-gutter 80px;
+
+		/* The designs put the form, the gutter between the columns and the
+		   stepper in a 774:184:500 ratio. Encoding that directly — including
+		   the gap as a percentage of the same track — keeps the proportions
+		   identical at any width instead of approximating them. */
+		&.has-aside {
+			column-gap: 12.6%;
+			display: grid;
+			grid-template-columns: minmax(0, 774fr) minmax(0, 500fr);
+			row-gap: 40px;
+		}
+	}
+
+	&__main {
+		min-width: 0;
+	}
+}
+
+.flw-crumb-btn {
+	align-items: center;
+	background: none;
+	border: 0;
+	color: $flw-ink;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 14px;
+	font-weight: 500;
+	gap: 10px;
+	padding: 8px 0;
+
+	&--static {
+		cursor: default;
+	}
+
+	&:hover:not(&--static) {
+		color: $flw-orange;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Typography                                                                 */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-heading {
+	font-size: 28px;
+	letter-spacing: -0.01em;
+	margin: 16px 0 4px;
+}
+
+.flw-subheading {
+	color: $flw-body;
+	margin: 0;
+}
+
+.flw-rule {
+	background: $flw-orange-soft;
+	border: 0;
+	height: 2px;
+	margin: 18px 0 28px;
+}
+
+.flw-step-badge {
+	background: #fcd9a0;
+	border-radius: 4px;
+	color: #4b2e00;
+	display: inline-block;
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Stepper                                                                    */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-stepper {
+	border: 1px solid $flw-line;
+	border-radius: 10px;
+	padding: 24px 28px;
+
+	&__item {
+		align-items: center;
+		color: $flw-muted;
+		display: flex;
+		gap: 14px;
+		position: relative;
+
+		&:not(:last-child) {
+			padding-bottom: 26px;
+
+			&::before {
+				background: $flw-line;
+				bottom: 4px;
+				content: "";
+				left: 11px;
+				position: absolute;
+				top: 24px;
+				width: 2px;
+			}
+		}
+
+		&.is-done {
+			color: $flw-ink;
+
+			.flw-stepper__dot {
+				background: #d1fadf;
+				border-color: #12b76a;
+				color: #039855;
+			}
+
+			&::before {
+				background: #12b76a;
+			}
+		}
+
+		&.is-active {
+			color: $flw-ink;
+
+			.flw-stepper__dot {
+				background: #e4e7ec;
+				border-color: #98a2b3;
+				color: $flw-ink;
+			}
+		}
+	}
+
+	&__dot {
+		align-items: center;
+		background: $flw-surface;
+		border: 2px solid $flw-border;
+		border-radius: 50%;
+		display: inline-flex;
+		flex: 0 0 auto;
+		height: 24px;
+		justify-content: center;
+		width: 24px;
+	}
+
+	&__label {
+		font-size: 15px;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Fields                                                                     */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-field {
+	margin-bottom: 22px;
+
+	&__label {
+		align-items: center;
+		color: $flw-ink;
+		display: flex;
+		font-size: 14px;
+		gap: 6px;
+		margin-bottom: 6px;
+	}
+
+	&__hint,
+	&__error {
+		align-items: flex-start;
+		display: flex;
+		font-size: 13px;
+		gap: 6px;
+		margin: 8px 0 0;
+	}
+
+	&__hint {
+		color: $flw-muted;
+
+		svg {
+			flex: 0 0 auto;
+			margin-top: 2px;
+		}
+	}
+
+	&__error {
+		color: #d92d20;
+	}
+
+	&.has-error .flw-input {
+		border-color: #f04438;
+	}
+}
+
+.flw-input {
+	background: $flw-surface;
+	border: 1px solid $flw-border;
+	border-radius: $flw-radius;
+	color: $flw-ink;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	line-height: 1.4;
+	padding: 12px 14px;
+	width: 100%;
+
+	&::placeholder {
+		color: $flw-muted;
+	}
+
+	/* wp-admin paints its own blue focus ring via `input[type="text"]:focus`,
+	   which outranks a lone class. Restated at higher specificity below. */
+
+	&[readonly] {
+		background: #f9fafb;
+		color: $flw-body;
+	}
+
+	&--area {
+		min-height: 140px;
+		resize: vertical;
+	}
+}
+
+/* wp-admin's forms.css caps every select at 25rem (400px) and styles focus on
+   element selectors, both of which outrank the plain `.flw-input` class. These
+   need the extra specificity to land. */
+.flw-admin-root .flw-input {
+	background-color: $flw-surface;
+	border: 1px solid $flw-border;
+	border-radius: $flw-radius;
+	box-shadow: none;
+	color: $flw-ink;
+	font-size: 14px;
+	line-height: 1.4;
+	max-width: none;
+	min-height: 46px;
+	padding: 12px 14px;
+
+	&:focus {
+		border-color: $flw-orange;
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.18);
+		outline: none;
+	}
+}
+
+/* wp-admin gives selects its own padding and arrow image;
+   the chevron here is ours. */
+.flw-admin-root select.flw-input {
+	background-image: none;
+	height: auto;
+	line-height: 1.4;
+	padding-right: 42px;
+}
+
+.flw-admin-root .flw-input[readonly] {
+	background-color: #f9fafb;
+	color: $flw-body;
+}
+
+.flw-select {
+	position: relative;
+
+	select {
+		appearance: none;
+		cursor: pointer;
+		padding-right: 42px;
+	}
+
+	&__chevron {
+		align-items: center;
+		color: $flw-body;
+		display: flex;
+		height: 100%;
+		pointer-events: none;
+		position: absolute;
+		right: 14px;
+		top: 0;
+	}
+}
+
+.flw-copyfield {
+	display: flex;
+
+	.flw-input {
+		border-bottom-right-radius: 0;
+		border-right: 0;
+		border-top-right-radius: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__btn {
+		background: #808080;
+		border: 0;
+		border-radius: 0 $flw-radius $flw-radius 0;
+		color: #fff;
+		cursor: pointer;
+		flex: 0 0 auto;
+		font-size: 14px;
+		min-width: 84px;
+		padding: 0 18px;
+
+		&:hover {
+			background: #6e6e6e;
+		}
+	}
+}
+
+/* Two short fields side by side, e.g. currency and country. */
+.flw-field-row {
+	column-gap: 20px;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flw-section-title {
+	border-top: 1px solid $flw-line;
+	font-size: 20px;
+	margin: 34px 0 4px;
+	padding-top: 26px;
+}
+
+.flw-section-note {
+	color: $flw-body;
+	margin: 0 0 18px;
+}
+
+/* Shows whether the entered keys will take real money. */
+.flw-mode {
+	border-radius: $flw-radius;
+	font-size: 13px;
+	margin: 0 0 22px;
+	padding: 10px 14px;
+
+	&--test {
+		background: #fff6e9;
+		color: $flw-orange-ink;
+	}
+
+	&--live {
+		background: #ecfdf3;
+		color: #05603a;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Checkboxes                                                                 */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-checkbox {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 10px;
+	margin: 6px 0;
+
+	input {
+		height: 0;
+		opacity: 0;
+		position: absolute;
+		width: 0;
+	}
+
+	&__box {
+		align-items: center;
+		background: $flw-surface;
+		border: 1.5px solid $flw-border;
+		border-radius: 4px;
+		color: transparent;
+		display: inline-flex;
+		flex: 0 0 auto;
+		height: 18px;
+		justify-content: center;
+		width: 18px;
+	}
+
+	input:checked + &__box {
+		background: $flw-surface;
+		border-color: $flw-orange;
+		color: $flw-orange;
+	}
+
+	input:focus-visible + &__box {
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.25);
+	}
+
+	&__label {
+		font-size: 14px;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Buttons                                                                    */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-actions {
+	display: flex;
+	gap: 16px;
+	margin-top: 34px;
+
+	.flw-btn {
+		flex: 1 1 0;
+	}
+
+	&:not(.has-back) .flw-btn {
+		width: 100%;
+	}
+}
+
+.flw-btn {
+	align-items: center;
+	border: 0;
+	border-radius: $flw-radius;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 500;
+	gap: 10px;
+	justify-content: center;
+	min-height: 48px;
+	padding: 0 28px;
+	transition: background-color 0.15s ease;
+
+	&--primary {
+		background: $flw-orange;
+		color: #1a1a1a;
+
+		&:hover:not(:disabled) {
+			background: #e08c00;
+		}
+
+		&:disabled {
+			background: $flw-orange-soft;
+			color: rgba(26, 26, 26, 0.7);
+			cursor: not-allowed;
+		}
+	}
+
+	&--secondary {
+		background: #808080;
+		color: #fff;
+
+		&:hover:not(:disabled) {
+			background: #6e6e6e;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+	}
+
+	&__spinner {
+		animation: flw-spin 0.7s linear infinite;
+		border: 2px solid currentcolor;
+		border-radius: 50%;
+		border-right-color: transparent;
+		height: 16px;
+		width: 16px;
+	}
+}
+
+.flw-link-btn {
+	background: none;
+	border: 0;
+	color: $flw-orange;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	margin-top: 18px;
+	text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Tooltip                                                                    */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-tooltip {
+	color: $flw-muted;
+	cursor: help;
+	display: inline-flex;
+	position: relative;
+
+	&__bubble {
+		background: #2f2f2f;
+		border-radius: 8px;
+		bottom: calc(100% + 10px);
+		color: #fff;
+		font-size: 13px;
+		left: 0;
+		line-height: 1.45;
+		opacity: 0;
+		padding: 12px 14px;
+		pointer-events: none;
+		position: absolute;
+		transition: opacity 0.12s ease;
+		width: 240px;
+		z-index: 20;
+
+		&::after {
+			border: 6px solid transparent;
+			border-top-color: #2f2f2f;
+			content: "";
+			left: 12px;
+			position: absolute;
+			top: 100%;
+		}
+	}
+
+	&:hover &__bubble,
+	&:focus &__bubble,
+	&:focus-visible &__bubble {
+		opacity: 1;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Welcome                                                                    */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-welcome {
+	margin: 0 auto;
+	max-width: 1120px;
+	padding: 56px 0 80px;
+	text-align: center;
+
+	.flw-wordmark {
+		display: block;
+		height: 40px;
+		margin: 0 auto;
+		width: auto;
+	}
+
+	&__title {
+		font-size: 46px;
+		line-height: 1.12;
+		margin: 28px 0 20px;
+	}
+
+	&__lede {
+		color: $flw-body;
+		font-size: 16px;
+		margin: 0 auto 34px;
+		max-width: 740px;
+	}
+}
+
+.flw-cards {
+	display: grid;
+	gap: 32px;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	margin-top: 76px;
+	text-align: left;
+}
+
+.flw-card {
+
+	h2 {
+		font-size: 20px;
+		margin: 20px 0 8px;
+	}
+
+	p {
+		color: $flw-body;
+		margin: 0 0 12px;
+	}
+
+	/* The exported artwork carries its own rounded tinted background, so the
+	   wrapper only has to clip it. */
+	&__art {
+		border-radius: 10px;
+		display: flex;
+		overflow: hidden;
+	}
+}
+
+.flw-illustration {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Payment methods                                                            */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-methods {
+	border: 1px solid $flw-line;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.flw-method {
+	align-items: flex-start;
+	cursor: pointer;
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 18px 56px minmax(0, 1fr);
+	padding: 20px 22px;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid $flw-line;
+	}
+
+	&:hover {
+		background: #fcfcfd;
+	}
+
+	input {
+		height: 0;
+		opacity: 0;
+		position: absolute;
+		width: 0;
+	}
+
+	.flw-checkbox__box {
+		margin-top: 2px;
+	}
+
+	input:checked + .flw-checkbox__box {
+		border-color: $flw-orange;
+		color: $flw-orange;
+	}
+
+	input:focus-visible + .flw-checkbox__box {
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.25);
+	}
+
+	&__mark {
+		align-items: center;
+		border: 1px solid $flw-line;
+		border-radius: 6px;
+		display: flex;
+		height: 36px;
+		justify-content: center;
+		width: 56px;
+	}
+
+	&__text {
+		display: block;
+		min-width: 0;
+	}
+
+	&__title {
+		display: block;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	&__desc {
+		color: $flw-body;
+		display: block;
+		font-size: 13px;
+		margin-top: 2px;
+	}
+}
+
+.flw-method-mark {
+	height: 24px;
+	width: 40px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Advanced disclosure                                                        */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-advanced {
+	border-top: 1px solid $flw-line;
+	margin-top: 26px;
+	padding-top: 18px;
+
+	&__toggle {
+		align-items: center;
+		background: none;
+		border: 0;
+		color: $flw-body;
+		cursor: pointer;
+		display: inline-flex;
+		font-family: inherit;
+		font-size: 14px;
+		font-weight: 500;
+		gap: 8px;
+		padding: 4px 0;
+
+		&:hover {
+			color: $flw-ink;
+		}
+	}
+
+	&__caret {
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 6px solid currentcolor;
+		transition: transform 0.15s ease;
+
+		&.is-open {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__body {
+		padding-top: 16px;
+	}
+
+	&__note {
+		color: $flw-muted;
+		font-size: 13px;
+		margin: 0 0 14px;
+	}
+
+	&__grid {
+		display: grid;
+		gap: 4px 24px;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		margin-bottom: 22px;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Tabs                                                                       */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-tabs {
+	border-bottom: 1px solid $flw-line;
+	display: flex;
+	gap: 8px;
+	margin-bottom: 30px;
+}
+
+.flw-tab {
+	background: none;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	color: $flw-body;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	margin-bottom: -1px;
+	padding: 10px 14px;
+
+	&:hover {
+		color: $flw-ink;
+	}
+
+	&.is-active {
+		border-bottom-color: $flw-orange;
+		color: $flw-orange;
+		font-weight: 500;
+	}
+}
+
+.flw-tabpanel {
+	max-width: 720px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Loading & success                                                          */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-loading {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	min-height: 60vh;
+
+	&__ring {
+		animation: flw-spin 0.9s linear infinite;
+		border: 3px solid #f2f4f7;
+		border-radius: 50%;
+		border-top-color: $flw-orange;
+		display: block;
+		height: 52px;
+		width: 52px;
+	}
+}
+
+.flw-success {
+	margin: 0 auto;
+	max-width: 480px;
+	padding: 18vh 20px 80px;
+	text-align: center;
+
+	h1 {
+		color: $flw-orange;
+		font-size: 24px;
+		margin: 24px 0 10px;
+	}
+
+	p {
+		color: $flw-body;
+		margin: 0;
+	}
+}
+
+.flw-success-art {
+	height: 96px;
+	width: 96px;
+}
+
+.flw-success__shortcode {
+	margin: 28px auto 0;
+	max-width: 420px;
+	text-align: left;
+
+	.flw-field__hint {
+		display: block;
+	}
+}
+
+.flw-success .flw-actions {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 420px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Toast                                                                      */
+
+/* -------------------------------------------------------------------------- */
+
+.flw-toast {
+	align-items: center;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 8px 24px rgba(16, 24, 40, 0.16);
+	display: flex;
+	font-size: 14px;
+	gap: 10px;
+	padding: 12px 14px;
+	position: fixed;
+	right: 24px;
+	top: 56px;
+	z-index: 9999;
+
+	&--success {
+		border-left: 4px solid #12b76a;
+	}
+
+	&--error {
+		border-left: 4px solid #f04438;
+	}
+
+	&__icon {
+		align-items: center;
+		background: #12b76a;
+		border-radius: 50%;
+		color: #fff;
+		display: inline-flex;
+		height: 20px;
+		justify-content: center;
+		width: 20px;
+	}
+
+	&__close {
+		background: none;
+		border: 0;
+		color: $flw-muted;
+		cursor: pointer;
+		font-size: 20px;
+		line-height: 1;
+		padding: 0 2px;
+	}
+}
+
+@keyframes flw-spin {
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* List screens: Payment Forms and Transactions                               */
+
+/* -------------------------------------------------------------------------- */
+
+$flw-grey: #f2f4f7;
+$flw-shadow: 0 12px 32px rgba(16, 24, 40, 0.12), 0 2px 6px rgba(16, 24, 40, 0.06);
+
+.flw-btn--outline {
+	background: $flw-surface;
+	border: 1px solid $flw-border;
+	color: $flw-ink;
+	min-height: 40px;
+	padding: 0 18px;
+
+	&:hover:not(:disabled) {
+		background: $flw-grey;
+	}
+}
+
+.flw-list-header {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: space-between;
+	margin-bottom: 20px;
+
+	.flw-btn {
+		min-height: 40px;
+		padding: 0 18px;
+	}
+}
+
+.flw-admin-root .flw-list-title {
+	font-size: 28px;
+	line-height: 1.2;
+}
+
+.flw-list-actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.flw-admin-root .flw-toolbar-btn {
+	align-items: center;
+	background: $flw-grey;
+	border: 0;
+	border-radius: $flw-radius;
+	color: $flw-ink;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	gap: 8px;
+	min-height: 40px;
+	padding: 0 16px;
+	text-decoration: none;
+
+	&:hover,
+	&[aria-expanded="true"] {
+		background: #e4e7ec;
+		color: $flw-ink;
+	}
+
+	svg {
+		height: 16px;
+		width: 16px;
+	}
+}
+
+.flw-tab__count {
+	background: $flw-grey;
+	border-radius: 999px;
+	color: $flw-body;
+	font-size: 12px;
+	margin-left: 6px;
+	padding: 1px 8px;
+
+	.is-active & {
+		background: #fff3e0;
+		color: $flw-orange-ink;
+	}
+}
+
+/* Popovers */
+
+.flw-popover-anchor {
+	position: relative;
+}
+
+.flw-popover {
+	background: $flw-surface;
+	border: 1px solid $flw-line;
+	border-radius: 12px;
+	box-shadow: $flw-shadow;
+	max-width: calc(100vw - 32px);
+	padding: 20px;
+	position: absolute;
+	right: 0;
+	top: calc(100% + 8px);
+	width: 380px;
+	z-index: 20;
+
+	&__section {
+		border-top: 1px solid $flw-line;
+		margin-top: 16px;
+		padding-top: 16px;
+
+		h3 {
+			font-size: 13px;
+			font-weight: 500;
+			margin: 0 0 10px;
+		}
+	}
+
+	&__note {
+		align-items: center;
+		color: $flw-body;
+		display: flex;
+		font-size: 12px;
+		gap: 6px;
+		margin: 10px 0 0;
+
+		svg {
+			flex: none;
+			height: 14px;
+			width: 14px;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		gap: 10px;
+		justify-content: flex-end;
+		margin-top: 20px;
+
+		.flw-btn {
+			min-height: 40px;
+			padding: 0 18px;
+		}
+	}
+}
+
+.flw-presets {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.flw-preset {
+	background: $flw-surface;
+	border: 1px solid $flw-border;
+	border-radius: 999px;
+	color: $flw-body;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 13px;
+	padding: 6px 14px;
+
+	&:hover {
+		border-color: $flw-muted;
+	}
+
+	&.is-active {
+		background: #fff3e0;
+		border-color: $flw-orange;
+		color: $flw-orange-ink;
+		font-weight: 500;
+	}
+}
+
+.flw-daterange {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 1fr 1fr;
+}
+
+.flw-admin-root .flw-daterange__input,
+.flw-admin-root .flw-multiselect__control {
+	background: $flw-surface;
+	border: 1px solid $flw-border;
+	border-radius: $flw-radius;
+	color: $flw-ink;
+	font-family: inherit;
+	font-size: 14px;
+	min-height: 40px;
+	padding: 0 12px;
+	width: 100%;
+
+	&:focus {
+		border-color: $flw-orange;
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.18);
+		outline: none;
+	}
+}
+
+.flw-filter-field {
+	display: block;
+
+	&__label {
+		display: block;
+		font-size: 13px;
+		font-weight: 500;
+		margin-bottom: 8px;
+	}
+}
+
+.flw-multiselect {
+	position: relative;
+
+	.flw-multiselect__control {
+		cursor: pointer;
+		overflow: hidden;
+		padding-right: 36px;
+		text-align: left;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.is-placeholder,
+	input::placeholder {
+		color: $flw-muted;
+	}
+
+	&__chevron {
+		color: $flw-muted;
+		pointer-events: none;
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+
+		.is-open & {
+			transform: translateY(-50%) rotate(180deg);
+		}
+	}
+
+	&__list {
+		background: $flw-surface;
+		border: 1px solid $flw-line;
+		border-radius: $flw-radius;
+		box-shadow: $flw-shadow;
+		left: 0;
+		list-style: none;
+		margin: 4px 0 0;
+		max-height: 220px;
+		overflow-y: auto;
+		padding: 4px;
+		position: absolute;
+		right: 0;
+		z-index: 2;
+
+		li {
+			margin: 0;
+		}
+	}
+
+	&__option {
+		align-items: center;
+		border-radius: 6px;
+		cursor: pointer;
+		display: flex;
+		gap: 10px;
+		padding: 8px 10px;
+
+		&:hover {
+			background: $flw-grey;
+		}
+
+		input {
+			height: 1px;
+			opacity: 0;
+			position: absolute;
+			width: 1px;
+		}
+	}
+
+	&__box {
+		align-items: center;
+		border: 1px solid $flw-border;
+		border-radius: 4px;
+		color: transparent;
+		display: inline-flex;
+		flex: none;
+		height: 16px;
+		justify-content: center;
+		width: 16px;
+
+		svg {
+			height: 10px;
+			width: 10px;
+		}
+
+		input:checked + & {
+			background: $flw-orange;
+			border-color: $flw-orange;
+			color: #fff;
+		}
+
+		input:focus-visible + & {
+			box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.3);
+		}
+	}
+
+	&__empty {
+		color: $flw-muted;
+		padding: 8px 10px;
+	}
+}
+
+/* Tables */
+
+.flw-table-wrap {
+	border: 1px solid $flw-line;
+	border-radius: 12px;
+	overflow-x: auto;
+
+	&.is-loading {
+		opacity: 0.6;
+		pointer-events: none;
+	}
+}
+
+.flw-skeleton {
+	animation: flw-pulse 1.2s ease-in-out infinite;
+	background: linear-gradient(to bottom, $flw-grey 0 44px, transparent 44px) 0 0 / 100% 60px repeat-y;
+	height: 300px;
+}
+
+@keyframes flw-pulse {
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.flw-table {
+	border-collapse: collapse;
+	min-width: 640px;
+	width: 100%;
+
+	th {
+		background: $flw-grey;
+		color: $flw-body;
+		font-size: 13px;
+		font-weight: 500;
+		padding: 12px 20px;
+		text-align: left;
+		white-space: nowrap;
+	}
+
+	td {
+		border-top: 1px solid $flw-line;
+		padding: 16px 20px;
+		vertical-align: middle;
+	}
+
+	tbody tr.is-clickable {
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible {
+			background: #fcfcfd;
+			outline: none;
+		}
+	}
+
+	&__actions {
+		text-align: right;
+		white-space: nowrap;
+	}
+}
+
+.flw-cell-primary {
+	color: $flw-ink;
+	display: block;
+	font-weight: 500;
+}
+
+.flw-cell-secondary {
+	color: $flw-muted;
+	display: block;
+	font-size: 13px;
+}
+
+.flw-cell-muted {
+	color: $flw-muted;
+}
+
+.flw-admin-root .flw-row-link {
+	align-items: center;
+	color: $flw-body;
+	display: inline-flex;
+	gap: 4px;
+	margin-left: 16px;
+	text-decoration: none;
+
+	&:hover {
+		color: $flw-orange;
+	}
+
+	svg {
+		height: 12px;
+		width: 12px;
+	}
+}
+
+.flw-form-cell {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+
+	&__icon {
+		align-items: center;
+		background: #fff3e0;
+		border-radius: $flw-radius;
+		color: $flw-orange-ink;
+		display: inline-flex;
+		flex: none;
+		height: 36px;
+		justify-content: center;
+		width: 36px;
+
+		svg {
+			fill: currentcolor;
+			height: 20px;
+			width: 20px;
+		}
+	}
+}
+
+.flw-pill {
+	background: $flw-grey;
+	border-radius: 999px;
+	color: $flw-body;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 500;
+	padding: 3px 10px;
+	white-space: nowrap;
+
+	&--successful,
+	&--publish {
+		background: #ecfdf3;
+		color: #027a48;
+	}
+
+	&--pending,
+	&--future {
+		background: #fffaeb;
+		color: #b54708;
+	}
+
+	&--failed {
+		background: #fef3f2;
+		color: #b42318;
+	}
+
+	&--review {
+		background: #f4f3ff;
+		color: #5925dc;
+	}
+
+	&--synced {
+		background: #eff8ff;
+		color: #175cd3;
+	}
+}
+
+.flw-pagination {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+	margin-top: 20px;
+
+	&__status {
+		color: $flw-muted;
+		font-size: 13px;
+		margin-left: auto;
+	}
+}
+
+.flw-page-btn {
+	background: $flw-surface;
+	border: 1px solid $flw-border;
+	border-radius: $flw-radius;
+	color: $flw-ink;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	min-height: 36px;
+	padding: 0 14px;
+
+	&:disabled {
+		color: $flw-muted;
+		cursor: not-allowed;
+	}
+
+	&:hover:not(:disabled) {
+		background: $flw-grey;
+	}
+}
+
+.flw-empty {
+	color: $flw-body;
+	padding: 48px 24px;
+	text-align: center;
+
+	p {
+		margin: 0 auto 16px;
+		max-width: 460px;
+	}
+
+	&--hero {
+		border: 1px dashed $flw-border;
+		border-radius: 12px;
+		padding: 56px 24px;
+
+		h2 {
+			font-size: 26px;
+			margin-bottom: 8px;
+		}
+	}
+
+	&__art svg {
+		height: auto;
+		margin-bottom: 16px;
+		max-width: 160px;
+	}
+}
+
+.flw-list-footnote {
+	color: $flw-muted;
+	font-size: 12px;
+	margin: 16px 0 0;
+}
+
+/* Drawer & modal */
+
+.flw-overlay {
+	background: rgba(16, 24, 40, 0.4);
+	display: flex;
+	inset: 0;
+	justify-content: flex-end;
+	position: fixed;
+	z-index: 100000;
+
+	&--center {
+		align-items: center;
+		justify-content: center;
+		padding: 16px;
+	}
+}
+
+.flw-drawer,
+.flw-modal {
+	background: $flw-surface;
+	display: flex;
+	flex-direction: column;
+
+	&__header {
+		align-items: center;
+		border-bottom: 1px solid $flw-line;
+		display: flex;
+		justify-content: space-between;
+		padding: 20px 24px;
+
+		h2 {
+			font-size: 22px;
+		}
+	}
+
+	&__body {
+		flex: 1;
+		overflow-y: auto;
+		padding: 24px;
+	}
+
+	&__footer {
+		align-items: center;
+		border-top: 1px solid $flw-line;
+		display: flex;
+		gap: 12px;
+		justify-content: flex-end;
+		padding: 16px 24px;
+
+		.flw-btn {
+			min-height: 40px;
+			padding: 0 18px;
+		}
+	}
+}
+
+.flw-drawer {
+	height: 100%;
+	max-width: 100%;
+	width: 440px;
+
+	&__amount {
+		font-family: $flw-serif;
+		font-size: 32px;
+		margin: 0 0 20px;
+	}
+
+	&__body > .flw-pill {
+		margin-bottom: 12px;
+	}
+
+	&__footer {
+		justify-content: space-between;
+	}
+}
+
+.flw-modal {
+	border-radius: 16px;
+	box-shadow: $flw-shadow;
+	max-height: calc(100vh - 64px);
+	max-width: 100%;
+	width: 880px;
+}
+
+.flw-icon-btn {
+	background: none;
+	border: 0;
+	border-radius: 6px;
+	color: $flw-body;
+	cursor: pointer;
+	font-size: 24px;
+	height: 32px;
+	line-height: 1;
+	width: 32px;
+
+	&:hover {
+		background: $flw-grey;
+	}
+}
+
+.flw-details {
+	margin: 0;
+}
+
+.flw-detail {
+	border-bottom: 1px solid $flw-line;
+	display: grid;
+	gap: 12px;
+	grid-template-columns: 130px minmax(0, 1fr);
+	padding: 12px 0;
+
+	dt {
+		color: $flw-muted;
+	}
+
+	dd {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+}
+
+.flw-admin-root .flw-link-danger {
+	background: none;
+	border: 0;
+	color: #b42318;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0;
+	text-decoration: underline;
+
+	&:disabled {
+		opacity: 0.6;
+	}
+}
+
+/* Form builder */
+
+.flw-builder__intro {
+	color: $flw-body;
+	margin: 0 0 16px;
+}
+
+.flw-type-grid {
+	display: grid;
+	gap: 14px;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.flw-type-card {
+	background: $flw-surface;
+	border: 1px solid $flw-line;
+	border-radius: 12px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	font-family: inherit;
+	gap: 6px;
+	padding: 20px;
+	text-align: left;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover,
+	&:focus-visible {
+		border-color: $flw-orange;
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.15);
+		outline: none;
+	}
+
+	&__icon {
+		align-items: center;
+		background: #fff3e0;
+		border-radius: $flw-radius;
+		color: $flw-orange-ink;
+		display: inline-flex;
+		height: 40px;
+		justify-content: center;
+		margin-bottom: 8px;
+		width: 40px;
+
+		svg {
+			fill: currentcolor;
+			height: 22px;
+			width: 22px;
+		}
+	}
+
+	&__title {
+		color: $flw-ink;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	&__desc {
+		color: $flw-body;
+		font-size: 13px;
+	}
+}
+
+.flw-builder {
+	display: grid;
+	gap: 28px;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+	&__fields .flw-field-row {
+		gap: 14px;
+	}
+
+	&__preview {
+		align-self: start;
+		background: #f9fafb;
+		border: 1px solid $flw-line;
+		border-radius: 12px;
+		min-height: 260px;
+		padding: 20px;
+		position: sticky;
+		top: 0;
+	}
+
+	&__preview-label {
+		color: $flw-muted;
+		display: block;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		margin-bottom: 14px;
+		text-transform: uppercase;
+	}
+
+	&__preview-frame {
+		pointer-events: none;
+	}
+
+	&__preview-note {
+		color: $flw-muted;
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 782px) {
+
+	.flw-builder {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.flw-builder__preview {
+		position: static;
+	}
+
+	.flw-popover {
+		left: 0;
+		right: auto;
+	}
+}
+
+
+/* Integrations */
+
+.flw-integrations__lead {
+	color: $flw-body;
+	margin: 8px 0 0;
+	max-width: 640px;
+}
+
+.flw-integrations__header {
+	align-items: flex-end;
+}
+
+.flw-integrations__count {
+	background: #ecfdf3;
+	border-radius: 999px;
+	color: #027a48;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 6px 14px;
+}
+
+.flw-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 28px;
+}
+
+.flw-admin-root .flw-section-title {
+	color: $flw-body;
+	font-family: $flw-sans;
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: 0.04em;
+	margin: 0 0 14px;
+	text-transform: uppercase;
+}
+
+.flw-integrations__grid {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	margin-bottom: 36px;
+
+	&.is-loading {
+		animation: flw-pulse 1.2s ease-in-out infinite;
+		background: $flw-grey;
+		border-radius: 12px;
+		height: 260px;
+	}
+}
+
+.flw-integration {
+	background: $flw-surface;
+	border: 1px solid $flw-line;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	padding: 22px;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+	&:not(.is-soon):hover {
+		border-color: $flw-border;
+		box-shadow: 0 4px 16px rgba(16, 24, 40, 0.06);
+	}
+
+	&__head {
+		align-items: flex-start;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 16px;
+	}
+
+	&__logo {
+		align-items: center;
+		border-radius: 10px;
+		display: inline-flex;
+		font-size: 15px;
+		font-weight: 700;
+		height: 44px;
+		justify-content: center;
+		letter-spacing: 0.02em;
+		width: 44px;
+	}
+
+	&__status {
+		border-radius: 999px;
+		font-size: 12px;
+		font-weight: 500;
+		padding: 3px 10px;
+
+		&.is-active {
+			background: #ecfdf3;
+			color: #027a48;
+		}
+
+		&.is-ready {
+			background: #fff3e0;
+			color: $flw-orange-ink;
+		}
+
+		&.is-idle,
+		&.is-soon {
+			background: $flw-grey;
+			color: $flw-body;
+		}
+	}
+
+	&__name {
+		color: $flw-ink;
+		font-size: 17px;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	&__category {
+		color: $flw-muted;
+		font-size: 13px;
+	}
+
+	&__desc {
+		color: $flw-body;
+		flex: 1;
+		margin: 12px 0 0;
+	}
+
+	&__hint {
+		color: $flw-muted;
+		font-size: 12px;
+		margin: 10px 0 0;
+	}
+
+	&__warning {
+		background: #fffaeb;
+		border-radius: $flw-radius;
+		color: #b54708;
+		font-size: 13px;
+		margin: 12px 0 0;
+		padding: 8px 12px;
+	}
+
+	&__foot {
+		align-items: center;
+		border-top: 1px solid $flw-line;
+		display: flex;
+		gap: 12px;
+		justify-content: space-between;
+		margin-top: 18px;
+		padding-top: 16px;
+
+		.flw-btn {
+			min-height: 38px;
+			padding: 0 16px;
+		}
+	}
+
+	&__blocked {
+		color: $flw-muted;
+		font-size: 13px;
+	}
+
+	&.is-soon {
+		background: #fcfcfd;
+
+		.flw-integration__logo {
+			filter: grayscale(1);
+			opacity: 0.6;
+		}
+
+		.flw-integration__name,
+		.flw-integration__desc {
+			color: $flw-muted;
+		}
+	}
+}
+
+.flw-admin-root .flw-integration__manage {
+	align-items: center;
+	color: $flw-ink;
+	display: inline-flex;
+	gap: 6px;
+	text-decoration: none;
+
+	&:hover {
+		color: $flw-orange;
+	}
+
+	svg {
+		height: 12px;
+		width: 12px;
+	}
+}
+
+.flw-switch {
+	background: $flw-border;
+	border: 0;
+	border-radius: 999px;
+	cursor: pointer;
+	flex: none;
+	height: 24px;
+	padding: 0;
+	position: relative;
+	transition: background-color 0.15s ease;
+	width: 44px;
+
+	&__thumb {
+		background: #fff;
+		border-radius: 50%;
+		box-shadow: 0 1px 3px rgba(16, 24, 40, 0.2);
+		height: 20px;
+		left: 2px;
+		position: absolute;
+		top: 2px;
+		transition: transform 0.15s ease;
+		width: 20px;
+	}
+
+	&.is-on {
+		background: $flw-orange;
+
+		.flw-switch__thumb {
+			transform: translateX(20px);
+		}
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.3);
+		outline: none;
+	}
+
+	&:disabled {
+		cursor: wait;
+		opacity: 0.6;
+	}
+}
+
+
+/* Help menu and guided tips */
+
+.flw-page__actions {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+
+.flw-help-btn {
+	align-items: center;
+	background: none;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	color: $flw-body;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	gap: 6px;
+	padding: 6px 12px 6px 8px;
+
+	&:hover,
+	&[aria-expanded="true"] {
+		background: $flw-grey;
+		color: $flw-ink;
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.3);
+		outline: none;
+	}
+}
+
+.flw-help {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: -8px;
+	width: 300px;
+
+	&__item,
+	&__row {
+		align-items: center;
+		border-radius: $flw-radius;
+		display: flex;
+		gap: 16px;
+		justify-content: space-between;
+		padding: 10px 12px;
+		text-align: left;
+	}
+
+	&__item {
+		background: none;
+		border: 0;
+		cursor: pointer;
+		flex-direction: column;
+		align-items: flex-start;
+		font-family: inherit;
+		gap: 2px;
+
+		&:hover,
+		&:focus-visible {
+			background: $flw-grey;
+			outline: none;
+		}
+	}
+
+	&__label {
+		color: $flw-ink;
+		display: block;
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	&__hint {
+		color: $flw-muted;
+		display: block;
+		font-size: 13px;
+	}
+}
+
+.flw-admin-root .flw-help__link {
+	align-items: center;
+	border-top: 1px solid $flw-line;
+	color: $flw-body;
+	display: flex;
+	font-size: 13px;
+	gap: 6px;
+	margin-top: 4px;
+	padding: 12px 12px 4px;
+	text-decoration: none;
+
+	&:hover {
+		color: $flw-orange;
+	}
+
+	svg {
+		height: 12px;
+		width: 12px;
+	}
+}
+
+.flw-tour {
+
+	&__blocker,
+	&__dim {
+		inset: 0;
+		position: fixed;
+		z-index: 100000;
+	}
+
+	&__dim {
+		background: rgba(16, 24, 40, 0.5);
+	}
+
+	&__spot {
+		border-radius: 10px;
+		box-shadow: 0 0 0 9999px rgba(16, 24, 40, 0.5);
+		pointer-events: none;
+		position: fixed;
+		transition: top 0.25s ease, left 0.25s ease, width 0.25s ease, height 0.25s ease;
+		z-index: 100000;
+	}
+
+	&__card {
+		background: $flw-surface;
+		border-radius: 12px;
+		box-shadow: 0 20px 48px rgba(16, 24, 40, 0.24);
+		color: $flw-ink;
+		max-width: calc(100vw - 32px);
+		padding: 20px 20px 16px;
+		position: fixed;
+		width: 340px;
+		z-index: 100001;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__arrow {
+		background: $flw-surface;
+		height: 12px;
+		position: absolute;
+		transform: translateX(-50%) rotate(45deg);
+		width: 12px;
+
+		.is-bottom & {
+			top: -6px;
+		}
+
+		.is-top & {
+			bottom: -6px;
+		}
+
+		.is-right & {
+			left: 0;
+			transform: translateY(-50%) rotate(45deg);
+		}
+	}
+
+	&__count {
+		color: $flw-orange-ink;
+		display: block;
+		font-size: 12px;
+		font-weight: 500;
+		margin-bottom: 6px;
+	}
+
+	.flw-admin-root &__title,
+	&__title {
+		font-family: $flw-sans;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.35;
+		margin: 0 0 6px;
+	}
+
+	&__body {
+		color: $flw-body;
+		font-size: 14px;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	&__foot {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 18px;
+	}
+
+	&__nav {
+		display: flex;
+		gap: 8px;
+
+		.flw-btn {
+			font-size: 14px;
+			min-height: 36px;
+			padding: 0 16px;
+		}
+	}
+
+	&__skip {
+		background: none;
+		border: 0;
+		color: $flw-muted;
+		cursor: pointer;
+		font-family: inherit;
+		font-size: 13px;
+		padding: 4px 0;
+
+		&:hover,
+		&:focus-visible {
+			color: $flw-ink;
+			text-decoration: underline;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.flw-tour__spot {
+		transition: none;
+	}
+}
+
+@media screen and (max-width: 782px) {
+
+	.flw-help-btn span {
+		display: none;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Responsive                                                                 */
+
+/* -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1100px) {
+
+	.flw-page__body.has-aside {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.flw-page__aside {
+		max-width: 720px;
+		order: -1;
+	}
+
+}
+
+@media screen and (max-width: 782px) {
+
+	.flw-field-row {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.flw-page__crumb-inner,
+	.flw-page__body {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.flw-welcome__title {
+		font-size: 32px;
+	}
+
+	.flw-method {
+		grid-template-columns: 18px minmax(0, 1fr);
+
+		&__mark {
+			display: none;
+		}
+	}
+}

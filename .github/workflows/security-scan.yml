@@ -1,0 +1,29 @@
+name: Security scan on all changes (Commits/PRs)
+
+on:
+  push:
+    branches: ['main', 'master', 'pilot', 'dev']
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  contents: read
+
+jobs:
+  code-check:
+    runs-on: ubuntu-latest
+    env:
+      OS: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Checkmarx One ClI Action
+        uses: checkmarx/ast-github-action@882c03f380f4bdddae2d068540cbd73efe0796ac # main
+        with:
+          project_name: WordPress
+          cx_tenant: Flutterwave
+          base_uri: https://eu.ast.checkmarx.net/
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          additional_params: --scan-types sast,iac-security,api-security,sca,container-security

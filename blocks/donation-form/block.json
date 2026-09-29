@@ -1,0 +1,73 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flutterwave/donation-form",
+	"title": "Flutterwave Donation Form",
+	"category": "flutterwave",
+	"description": "Collect one-off or recurring donations, with suggested amounts.",
+	"keywords": [
+		"donate",
+		"donation",
+		"charity",
+		"give",
+		"recurring",
+		"flutterwave"
+	],
+	"textdomain": "rave-payment-forms",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"message": {
+			"type": "string",
+			"default": ""
+		},
+		"currency": {
+			"type": "string",
+			"default": ""
+		},
+		"amounts": {
+			"type": "string",
+			"default": "1000, 5000, 10000"
+		},
+		"showFrequency": {
+			"type": "boolean",
+			"default": true
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"heading": "Support our work",
+			"currency": "NGN"
+		}
+	},
+	"editorScript": "flw-blocks-editor",
+	"editorStyle": [
+		"flw_css",
+		"flw-blocks-editor-style"
+	],
+	"render": "file:./render.php"
+}

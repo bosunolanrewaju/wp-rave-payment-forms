@@ -1,83 +1,628 @@
-.flw-simple-pay-now-form button {
-  -moz-user-select: none;
-  -ms-touch-action: manipulation;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  background-color: #0a2740;
-  border: 1px solid #142a3e;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  margin: 0 0 6px;
-  outline: none;
-  padding: 6px 12px;
-  text-align: center;
-  touch-action: manipulation;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
+/**
+ * Flutterwave payment and donation forms.
+ *
+ * Shares its tokens with the admin app (client/admin/admin.scss) so a form
+ * looks like the onboarding screens that created it. Selectors use the form's
+ * own classes so theme styles for bare inputs and buttons do not win.
+ */
+
+.flutterwave-payment-form,
+.flutterwave-donation-form {
+
+	/* Blocks override these through --flw-accent, --flw-accent-text
+	   and --flw-custom-radius. */
+	--flw-orange: var(--flw-accent, #ff9b00);
+	--flw-on-orange: var(--flw-accent-text, #1a1a1a);
+	--flw-ink: #101828;
+	--flw-body: #475467;
+	--flw-muted: #98a2b3;
+	--flw-border: #d0d5dd;
+	--flw-line: #eaecf0;
+	--flw-radius: var(--flw-custom-radius, 8px);
+	--flw-sans: "Moderat", "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+	--flw-serif: "Millik", "Iowan Old Style", "Palatino Linotype", palatino, georgia, serif;
+
+	background: #fff;
+	border: 1px solid var(--flw-line);
+	border-radius: 12px;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 32px -12px rgba(16, 24, 40, 0.12);
+	box-sizing: border-box;
+	color: var(--flw-ink);
+	font-family: var(--flw-sans);
+	font-size: 15px;
+	line-height: 1.5;
+	margin: 24px auto;
+	max-width: var(--flw-max-width, 440px);
+	padding: 32px;
+	text-align: left;
+	width: 100%;
 }
 
-.flw-simple-pay-now-form button:hover {
-  background-color: #3d5a73;
+.flutterwave-payment-form *,
+.flutterwave-payment-form *::before,
+.flutterwave-payment-form *::after,
+.flutterwave-donation-form *,
+.flutterwave-donation-form *::before,
+.flutterwave-donation-form *::after {
+	box-sizing: inherit;
 }
 
-.flw-simple-pay-now-form button:active {
-  background-color: #0a2740;
+.flutterwave-payment-form form,
+.flutterwave-donation-form form {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	width: 100%;
 }
 
-.flw-form-select {
-    display: block;
-    /* width: 100%; */
-    background: #f2f2f2;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+/* Header ------------------------------------------------------------------ */
+
+.flutterwave-payment-form .flw-form-header,
+.flutterwave-donation-form .flw-form-header {
+	margin-bottom: 24px;
 }
 
-.flw-simple-pay-now-form input {
-  border: 1px solid #777;
-  border-color: #142a3e;
-  border-radius: 4px;
-  color: #777;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  margin: 0 0 6px;
-  outline: none;
-  padding: 6px 12px;
-  vertical-align: middle;
-  white-space: nowrap;
+.flutterwave-payment-form .flw-form-title,
+.flutterwave-donation-form .flw-form-title {
+	color: var(--flw-ink);
+	font-family: var(--flw-serif);
+	font-size: 26px;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	margin: 0 0 6px;
 }
 
-.flw-simple-pay-now-form label {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 0;
+.flutterwave-payment-form .flw-form-description,
+.flutterwave-donation-form .flw-form-description {
+	color: var(--flw-body);
+	margin: 0;
 }
 
-.failed {
-  color: #a00;
-  font-size: 1.5em;
+/* Fields ------------------------------------------------------------------ */
+
+.flutterwave-payment-form label,
+.flutterwave-donation-form label {
+	color: var(--flw-ink);
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+	margin: 0 0 6px;
 }
 
-.successful {
-  color: #0a0;
-  font-size: 1.5em;
+.flutterwave-payment-form .flw-form-input-text,
+.flutterwave-payment-form .flw-form-select,
+.flutterwave-donation-form .flw-form-input-text,
+.flutterwave-donation-form .flw-form-select {
+	appearance: none;
+	background-color: #fff;
+	border: 1px solid var(--flw-border);
+	border-radius: var(--flw-radius);
+	box-shadow: none;
+	color: var(--flw-ink);
+	display: block;
+	font-family: inherit;
+	font-size: 15px;
+	height: auto;
+	line-height: 1.4;
+	margin: 0 0 18px;
+	max-width: none;
+	min-height: 48px;
+	padding: 12px 14px;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	width: 100%;
+}
+
+.flutterwave-payment-form .flw-form-select,
+.flutterwave-donation-form .flw-form-select {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23475467' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-position: right 14px center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	cursor: pointer;
+	padding-right: 42px;
+}
+
+.flutterwave-payment-form .flw-form-input-text::placeholder,
+.flutterwave-donation-form .flw-form-input-text::placeholder {
+	color: var(--flw-muted);
+	opacity: 1;
+}
+
+.flutterwave-payment-form .flw-form-input-text:hover,
+.flutterwave-payment-form .flw-form-select:hover,
+.flutterwave-donation-form .flw-form-input-text:hover,
+.flutterwave-donation-form .flw-form-select:hover {
+	border-color: var(--flw-muted);
+}
+
+.flutterwave-payment-form .flw-form-input-text:focus,
+.flutterwave-payment-form .flw-form-select:focus,
+.flutterwave-donation-form .flw-form-input-text:focus,
+.flutterwave-donation-form .flw-form-select:focus {
+	border-color: var(--flw-orange);
+	box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.18);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--flw-orange) 22%, transparent);
+	outline: none;
+}
+
+/* Amount summary ---------------------------------------------------------- */
+
+.flutterwave-payment-form .flw_payment_overview {
+	align-items: center;
+	background: #fff6e9;
+	background: color-mix(in srgb, var(--flw-orange) 9%, #fff);
+	border-radius: var(--flw-radius);
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	margin: 0 0 20px;
+	padding: 14px 16px;
+}
+
+.flutterwave-payment-form .flw_total_label {
+	color: var(--flw-body);
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+.flutterwave-payment-form .flw_amount_to_pay {
+	color: var(--flw-ink);
+	font-family: var(--flw-serif);
+	font-size: clamp(18px, 5vw, 24px);
+	line-height: 1.2;
+	white-space: nowrap;
+}
+
+/* Button ------------------------------------------------------------------ */
+
+.flutterwave-payment-form .flw-pay-now-button,
+.flutterwave-donation-form .flw-pay-now-button {
+	align-items: center;
+	background: var(--flw-orange);
+	border: 0;
+	border-radius: var(--flw-radius);
+	box-shadow: none;
+	color: var(--flw-on-orange);
+	cursor: pointer;
+	display: flex;
+	font-family: inherit;
+	font-size: 16px;
+	font-weight: 500;
+	gap: 10px;
+	justify-content: center;
+	letter-spacing: normal;
+	line-height: 1.2;
+	margin: 6px 0 0;
+	min-height: 50px;
+	padding: 0 24px;
+	text-shadow: none;
+	text-transform: none;
+	transition: background-color 0.15s ease;
+	width: 100%;
+}
+
+.flutterwave-payment-form .flw-pay-now-button:hover:not(:disabled),
+.flutterwave-donation-form .flw-pay-now-button:hover:not(:disabled) {
+	background: var(--flw-orange);
+	color: var(--flw-on-orange);
+	filter: brightness(0.93);
+}
+
+.flutterwave-payment-form .flw-pay-now-button:focus-visible,
+.flutterwave-donation-form .flw-pay-now-button:focus-visible {
+	box-shadow: 0 0 0 3px rgba(255, 155, 0, 0.35);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--flw-orange) 40%, transparent);
+	outline: none;
+}
+
+.flutterwave-payment-form .flw-pay-now-button:disabled,
+.flutterwave-donation-form .flw-pay-now-button:disabled {
+	cursor: not-allowed;
+	opacity: 0.55;
+}
+
+/* Messages ---------------------------------------------------------------- */
+
+.flutterwave-payment-form .flw-error,
+.flutterwave-donation-form .flw-error {
+	background: #fef3f2;
+	border: 1px solid #fecdca;
+	border-radius: var(--flw-radius);
+	color: #b42318;
+	display: none;
+	font-size: 14px;
+	margin: 0 0 18px;
+	padding: 10px 14px;
+}
+
+.flutterwave-payment-form .flw-error.is-visible,
+.flutterwave-donation-form .flw-error.is-visible {
+	display: block;
+}
+
+.flutterwave-payment-form #notice:empty,
+.flutterwave-donation-form #notice:empty {
+	display: none;
+}
+
+.flutterwave-payment-form .flw-secured,
+.flutterwave-donation-form .flw-secured {
+	align-items: center;
+	color: var(--flw-muted);
+	display: flex;
+	font-size: 12px;
+	gap: 6px;
+	justify-content: center;
+	margin: 18px 0 0;
+}
+
+.flutterwave-payment-form .flw-secured strong,
+.flutterwave-donation-form .flw-secured strong {
+	color: var(--flw-body);
+	font-weight: 500;
+}
+
+/* Donation amount presets ------------------------------------------------ */
+
+.flutterwave-donation-form .flw-amount-presets {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 0 12px;
+}
+
+.flutterwave-donation-form .flw-amount-preset {
+	background: #fff;
+	border: 1px solid var(--flw-border);
+	border-radius: 999px;
+	box-shadow: none;
+	color: var(--flw-ink);
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.2;
+	margin: 0;
+	padding: 9px 16px;
+	text-transform: none;
+}
+
+.flutterwave-donation-form .flw-amount-preset:hover {
+	border-color: var(--flw-muted);
+}
+
+.flutterwave-donation-form .flw-amount-preset.is-selected {
+	background: #fff6e9;
+	background: color-mix(in srgb, var(--flw-orange) 12%, #fff);
+	border-color: var(--flw-orange);
+}
+
+/* Compact layout (payment button, pricing card) ---------------------------- */
+
+.flutterwave-payment-form.flw-layout-compact {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	margin: 0;
+	max-width: none;
+	padding: 0;
+}
+
+.flutterwave-payment-form.flw-layout-compact form {
+	align-items: stretch;
+	flex-flow: row wrap;
+	gap: 8px;
+}
+
+.flutterwave-payment-form.flw-layout-compact label,
+.flutterwave-payment-form.flw-layout-compact .flw_payment_overview {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.flutterwave-payment-form.flw-layout-compact .flw-form-input-text,
+.flutterwave-payment-form.flw-layout-compact .flw-form-select {
+	flex: 1 1 200px;
+	margin: 0;
+	width: auto;
+}
+
+.flutterwave-payment-form.flw-layout-compact .flw-pay-now-button {
+	flex: 0 0 auto;
+	margin: 0;
+	width: auto;
+}
+
+.flutterwave-payment-form.flw-layout-compact.flw-width-full form {
+	flex-direction: column;
+}
+
+.flutterwave-payment-form.flw-layout-compact.flw-width-full .flw-form-input-text,
+.flutterwave-payment-form.flw-layout-compact.flw-width-full .flw-form-select {
+
+	/* In a column the 200px basis would become the field's height. */
+	flex: 0 0 auto;
+	width: 100%;
+}
+
+.flutterwave-payment-form.flw-layout-compact.flw-width-full .flw-pay-now-button {
+	width: 100%;
+}
+
+.flutterwave-payment-form.flw-layout-compact .flw-secured {
+	justify-content: flex-start;
+	margin-top: 10px;
+}
+
+.flutterwave-payment-form.flw-layout-compact.flw-width-full .flw-secured {
+	justify-content: center;
+}
+
+/* Pricing card ------------------------------------------------------------ */
+
+.flw-pricing-card {
+	--flw-card-accent: var(--flw-accent, #ff9b00);
+
+	background: #fff;
+	border: 1px solid #eaecf0;
+	border-radius: 12px;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 32px -12px rgba(16, 24, 40, 0.12);
+	box-sizing: border-box;
+	color: #101828;
+	display: flex;
+	flex-direction: column;
+	font-family: Moderat, Inter, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
+	margin: 24px auto;
+	max-width: 360px;
+	padding: 28px;
+	position: relative;
+	width: 100%;
+}
+
+.flw-pricing-card.is-highlighted {
+	border: 2px solid var(--flw-card-accent);
+}
+
+.flw-pricing-card__badge {
+	background: var(--flw-card-accent);
+	border-radius: 999px;
+	color: var(--flw-accent-text, #1a1a1a);
+	font-size: 12px;
+	font-weight: 500;
+	padding: 4px 10px;
+	position: absolute;
+	right: 20px;
+	top: -12px;
+}
+
+.flw-pricing-card__name {
+	color: #475467;
+	font-size: 15px;
+	font-weight: 500;
+	margin: 0 0 8px;
+}
+
+.flw-pricing-card__price {
+	align-items: baseline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0 0 12px;
+}
+
+.flw-pricing-card__amount {
+	font-family: Millik, "Iowan Old Style", "Palatino Linotype", palatino, georgia, serif;
+	font-size: 38px;
+	line-height: 1.1;
+}
+
+.flw-pricing-card__period {
+	color: #98a2b3;
+	font-size: 14px;
+}
+
+.flw-pricing-card__description {
+	color: #475467;
+	margin: 0 0 16px;
+}
+
+.flw-pricing-card__features {
+	border-top: 1px solid #eaecf0;
+	list-style: none;
+	margin: 0 0 24px;
+	padding: 16px 0 0;
+}
+
+.flw-pricing-card__features li {
+	align-items: flex-start;
+	display: flex;
+	gap: 10px;
+	margin: 0 0 10px;
+}
+
+.flw-pricing-card__features svg {
+	color: var(--flw-card-accent);
+	flex: 0 0 auto;
+	margin-top: 4px;
+}
+
+.flw-pricing-card .flutterwave-payment-form {
+	margin-top: auto;
+}
+
+/* Accepted payment methods ------------------------------------------------ */
+
+.flw-payment-methods {
+	color: #475467;
+	font-family: Moderat, Inter, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+	font-size: 14px;
+}
+
+.flw-payment-methods__label {
+	color: #101828;
+	font-weight: 500;
+	margin: 0 0 8px;
+}
+
+.flw-payment-methods__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.flw-payment-methods__item {
+	align-items: center;
+	background: #fff;
+	border: 1px solid #eaecf0;
+	border-radius: 999px;
+	color: #101828;
+	display: inline-flex;
+	font-size: 13px;
+	gap: 6px;
+	margin: 0;
+	padding: 6px 12px;
+}
+
+.flw-payment-methods__item svg {
+	color: #475467;
+}
+
+.flw-payment-methods .flw-secured {
+	align-items: center;
+	color: #98a2b3;
+	display: flex;
+	font-size: 12px;
+	gap: 6px;
+	margin: 12px 0 0;
+}
+
+.flw-payment-methods .flw-secured strong {
+	color: #475467;
+	font-weight: 500;
+}
+
+/* Block alignment --------------------------------------------------------- */
+
+.wp-block-flutterwave-payment-form.alignleft > *,
+.wp-block-flutterwave-donation-form.alignleft > *,
+.wp-block-flutterwave-pricing-card.alignleft > * {
+	margin-left: 0;
+}
+
+.wp-block-flutterwave-payment-form.alignright > *,
+.wp-block-flutterwave-donation-form.alignright > *,
+.wp-block-flutterwave-pricing-card.alignright > * {
+	margin-right: 0;
+}
+
+.wp-block-flutterwave-payment-button.aligncenter .flw-layout-compact form,
+.wp-block-flutterwave-payment-methods.aligncenter .flw-payment-methods__list {
+	justify-content: center;
+}
+
+.wp-block-flutterwave-payment-methods.aligncenter {
+	text-align: center;
+}
+
+.wp-block-flutterwave-payment-methods.aligncenter .flw-secured {
+	justify-content: center;
+}
+
+/* Shown to editors while the plugin still needs setting up. */
+.flw-mssing-api-keys {
+	background: #fff6e9;
+	border-left: 4px solid #ff9b00;
+	border-radius: 8px;
+	color: #7a4a00;
+	display: block;
+	font-family: Moderat, Inter, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+	font-size: 15px;
+	margin: 24px auto;
+	max-width: 440px;
+	padding: 14px 16px;
+}
+
+.flw-mssing-api-keys a {
+	color: inherit;
+	font-weight: 500;
+}
+
+/* Redirect overlay -------------------------------------------------------- */
+
+.flutterwave-overlay {
+	backdrop-filter: blur(2px);
+	background-color: rgba(16, 24, 40, 0.55);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 99999;
+}
+
+.flw-overlay-text {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 20px 48px rgba(16, 24, 40, 0.24);
+	color: #101828;
+	font-family: Moderat, Inter, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+	font-size: 15px;
+	left: 50%;
+	line-height: 1.5;
+	max-width: calc(100% - 32px);
+	padding: 28px 32px;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 360px;
+}
+
+.flw-overlay-spinner {
+	animation: flw-spin 0.9s linear infinite;
+	border: 3px solid #f2f4f7;
+	border-radius: 50%;
+	border-top-color: #ff9b00;
+	display: block;
+	height: 40px;
+	margin: 0 auto 16px;
+	width: 40px;
+}
+
+@keyframes flw-spin {
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.flw-overlay-spinner {
+		animation-duration: 3s;
+	}
+}
+
+@media screen and (max-width: 480px) {
+
+	.flutterwave-payment-form,
+	.flutterwave-donation-form {
+		border-radius: 10px;
+		padding: 24px 20px;
+	}
 }

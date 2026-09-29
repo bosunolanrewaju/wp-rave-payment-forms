@@ -1,0 +1,100 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flutterwave/pricing-card",
+	"title": "Flutterwave Pricing Card",
+	"category": "flutterwave",
+	"description": "A plan or product card with a price, features and checkout.",
+	"keywords": [
+		"price",
+		"plan",
+		"product",
+		"pricing",
+		"tier",
+		"flutterwave"
+	],
+	"textdomain": "rave-payment-forms",
+	"attributes": {
+		"planName": {
+			"type": "string",
+			"default": "Starter"
+		},
+		"amount": {
+			"type": "number",
+			"default": 25000
+		},
+		"currency": {
+			"type": "string",
+			"default": ""
+		},
+		"period": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"features": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		},
+		"highlighted": {
+			"type": "boolean",
+			"default": false
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accentTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"planName": "Pro",
+			"amount": 25000,
+			"currency": "NGN",
+			"period": "one-off",
+			"features": [
+				"Unlimited projects",
+				"Priority support"
+			],
+			"badge": "Popular",
+			"highlighted": true
+		}
+	},
+	"editorScript": "flw-blocks-editor",
+	"editorStyle": [
+		"flw_css",
+		"flw-blocks-editor-style"
+	],
+	"render": "file:./render.php"
+}
